@@ -1,0 +1,138 @@
+{
+	"id": "PzoOpO27tyVnvgiY",
+	"name": "Daily Harvest Plan",
+	"nodes": [
+		{
+			"id": "d6bf9f55-8713-4044-8b81-a2591a996923",
+			"name": "Every day 04:30",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "30 4 * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "24c38462-6265-4101-8094-4ac136434d90",
+			"name": "Get open batches",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "weight_kg",
+							"condition": "gt",
+							"keyValue": 0
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "a81izAGygzhHhb9B",
+					"mode": "list",
+					"cachedResultName": "harvest_batches"
+				}
+			}
+		},
+		{
+			"id": "550231c2-bb66-4301-bb60-83abcf7c4087",
+			"name": "Build plan text",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"jsCode": "const items = $input.all().map((i) => i.json);\nreturn [{ json: { text: items.map((r) => `${r.batch_code}  ${r.crop}  ${r.weight_kg} kg`).join(\"\\n\") } }];"
+			}
+		},
+		{
+			"id": "7579323c-dee8-4906-b5e1-2c039307729d",
+			"name": "Mail the plan",
+			"type": "n8n-nodes-base.emailSend",
+			"typeVersion": 2.1,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"fromEmail": "farm-automation@greenspire-farms.example",
+				"toEmail": "harvest-team@greenspire-farms.example",
+				"subject": "=Harvest plan (cut-off {{ $vars.HARVEST_CUTOFF_HOUR }}:00)",
+				"emailFormat": "text",
+				"text": "={{ $json.text }}",
+				"options": {}
+			},
+			"credentials": {
+				"smtp": {
+					"id": "MqwpMSAz8X43TZNA"
+				}
+			},
+			"webhookId": "566662eb-bc09-497c-a90d-ab58e019b46b"
+		}
+	],
+	"connections": {
+		"Every day 04:30": {
+			"main": [
+				[
+					{
+						"node": "Get open batches",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Get open batches": {
+			"main": [
+				[
+					{
+						"node": "Build plan text",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Build plan text": {
+			"main": [
+				[
+					{
+						"node": "Mail the plan",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"pe0q5cVVTVsWqNT7"
+	]
+}

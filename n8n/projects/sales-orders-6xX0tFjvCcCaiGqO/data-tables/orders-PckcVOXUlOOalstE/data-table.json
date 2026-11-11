@@ -1,0 +1,42 @@
+{
+	"id": "PckcVOXUlOOalstE",
+	"name": "orders",
+	"columns": [
+		{
+			"id": "M4jrS0HdPI7Pxm3Y",
+			"name": "order_no",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "ZnW0mpNk5VMluVIT",
+			"name": "customer",
+			"type": "string",
+			"index": 1
+		},
+		{
+			"id": "GW8aQVXMGcJwTooH",
+			"name": "crop",
+			"type": "string",
+			"index": 2
+		},
+		{
+			"id": "XwcsfNlYkrbhUwxt",
+			"name": "kg",
+			"type": "number",
+			"index": 3
+		},
+		{
+			"id": "I8epSqTPNCPwtVIw",
+			"name": "status",
+			"type": "string",
+			"index": 4
+		},
+		{
+			"id": "pNvcRBsl2B2e9QAs",
+			"name": "placed_at",
+			"type": "date",
+			"index": 5
+		}
+	]
+}

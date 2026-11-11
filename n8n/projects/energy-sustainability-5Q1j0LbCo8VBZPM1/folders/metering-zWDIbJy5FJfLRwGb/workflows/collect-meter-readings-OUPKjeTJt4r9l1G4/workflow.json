@@ -1,0 +1,114 @@
+{
+	"id": "OUPKjeTJt4r9l1G4",
+	"name": "Collect Meter Readings",
+	"nodes": [
+		{
+			"id": "f2560c6f-ee34-487e-94e6-5841e02022e2",
+			"name": "Every 15 minutes",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "*/15 * * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "4f621aa3-46a5-431f-b946-b2a23ae730c6",
+			"name": "Fetch meters",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"method": "GET",
+				"url": "https://meters.greenspire-farms.example/api/latest",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "7mlmh3kzBbsrojw5"
+				}
+			}
+		},
+		{
+			"id": "268e46f1-8d11-4479-8041-fbb6ffac3968",
+			"name": "Store reading",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"meter": "={{ $json.meter }}",
+						"kwh": "={{ $json.kwh }}",
+						"peak_kw": "={{ $json.peak_kw }}",
+						"recorded_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "xzWoXfwlaFvs1ZUy",
+					"mode": "list",
+					"cachedResultName": "energy_readings"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Every 15 minutes": {
+			"main": [
+				[
+					{
+						"node": "Fetch meters",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Fetch meters": {
+			"main": [
+				[
+					{
+						"node": "Store reading",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "zWDIbJy5FJfLRwGb",
+	"isArchived": false,
+	"tagIds": [
+		"6lKtuzOrSQpwsIId"
+	]
+}

@@ -1,0 +1,5 @@
+{
+	"name": "PUMP_SERVICE_INTERVAL_DAYS",
+	"type": "string",
+	"value": "90"
+}

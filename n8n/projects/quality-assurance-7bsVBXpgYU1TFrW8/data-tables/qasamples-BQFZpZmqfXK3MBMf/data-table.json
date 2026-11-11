@@ -1,0 +1,36 @@
+{
+	"id": "BQFZpZmqfXK3MBMf",
+	"name": "qa_samples",
+	"columns": [
+		{
+			"id": "3ehYgcsxFx358qDP",
+			"name": "batch_code",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "XwOfufnOQVlcsAOH",
+			"name": "test",
+			"type": "string",
+			"index": 1
+		},
+		{
+			"id": "NvJSK5M8B9loRMpm",
+			"name": "result_cfu",
+			"type": "number",
+			"index": 2
+		},
+		{
+			"id": "vi5WvvAVQGkyNdY4",
+			"name": "passed",
+			"type": "boolean",
+			"index": 3
+		},
+		{
+			"id": "fjzNd1Wr0THcPVOg",
+			"name": "tested_at",
+			"type": "date",
+			"index": 4
+		}
+	]
+}

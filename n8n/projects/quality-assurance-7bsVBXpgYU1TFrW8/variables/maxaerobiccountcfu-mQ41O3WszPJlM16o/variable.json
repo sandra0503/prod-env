@@ -1,0 +1,5 @@
+{
+	"name": "MAX_AEROBIC_COUNT_CFU",
+	"type": "string",
+	"value": "100000"
+}

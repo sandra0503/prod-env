@@ -1,0 +1,67 @@
+{
+	"id": "zkV3WS5QBiK6GCEK",
+	"name": "Notify Climate Alert",
+	"nodes": [
+		{
+			"id": "4857ccc6-f3cd-4487-b213-c99a8b99e019",
+			"name": "When called by another workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inputSource": "passthrough"
+			}
+		},
+		{
+			"id": "60119159-aaea-41f2-b1f8-3da709b48e3e",
+			"name": "Post to Slack",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "farm-ops-alerts",
+					"mode": "name"
+				},
+				"text": "=:thermometer: Zone {{ $json.zone }}: {{ $json.temperature_c }} °C / {{ $json.humidity_pct }} % (target {{ $vars.TEMP_TARGET_C }} °C, max RH {{ $vars.HUMIDITY_MAX_PCT }} %, CO2 target {{ $vars.CO2_TARGET_PPM }} ppm)",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "XxNzjWl3SZPcUUY1"
+				}
+			},
+			"webhookId": "de7dbac0-8be0-4fc5-802d-38d04032b4df"
+		}
+	],
+	"connections": {
+		"When called by another workflow": {
+			"main": [
+				[
+					{
+						"node": "Post to Slack",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "Zrt9CvhrhwpTVU2O",
+	"isArchived": false,
+	"tagIds": [
+		"HrrAulEUm3UZ5mlN",
+		"HYi8b0fVqloz5clQ"
+	]
+}

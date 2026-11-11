@@ -1,0 +1,36 @@
+{
+	"id": "uJ93Do8loEQMEu8K",
+	"name": "climate_readings",
+	"columns": [
+		{
+			"id": "Hi0mNaWwAeYOisYp",
+			"name": "zone",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "Y1rgazOdxhVteu09",
+			"name": "temperature_c",
+			"type": "number",
+			"index": 1
+		},
+		{
+			"id": "FmCk2KxOOTWhPomc",
+			"name": "humidity_pct",
+			"type": "number",
+			"index": 2
+		},
+		{
+			"id": "c5RUIoDmdb1Q76Z9",
+			"name": "co2_ppm",
+			"type": "number",
+			"index": 3
+		},
+		{
+			"id": "hrvkNWebir1yiRUV",
+			"name": "recorded_at",
+			"type": "date",
+			"index": 4
+		}
+	]
+}

@@ -1,0 +1,114 @@
+{
+	"id": "m62XyiEnJNQzWcZG",
+	"name": "Log Packaging Run",
+	"nodes": [
+		{
+			"id": "f107170d-2dd6-42e2-9d43-39eeb468e561",
+			"name": "Packing station",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "packaging/run",
+				"options": {}
+			},
+			"webhookId": "0290ef1b-89fa-4ba1-8793-fc8872e32ad4"
+		},
+		{
+			"id": "1414a6cb-da67-4963-aaf2-240023fecf31",
+			"name": "Store run",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"batch_code": "={{ $json.body.batch_code }}",
+						"packs": "={{ $json.body.packs }}",
+						"operator": "={{ $json.body.operator }}",
+						"packed_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "sAm6EOxfFTAJIGil",
+					"mode": "list",
+					"cachedResultName": "packaging_runs"
+				}
+			}
+		},
+		{
+			"id": "29821e16-b1e3-47cb-98f1-aa5e94b4fe51",
+			"name": "Post to Slack",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "packhouse",
+					"mode": "name"
+				},
+				"text": "=Packed {{ $json.packs }} x {{ $vars.PACK_SIZE_GRAMS }} g from {{ $json.batch_code }}.",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "FTzVMwpxRknepIBX"
+				}
+			},
+			"webhookId": "bf774293-6dd4-4d32-a94a-61fc1b090e8a"
+		}
+	],
+	"connections": {
+		"Packing station": {
+			"main": [
+				[
+					{
+						"node": "Store run",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Store run": {
+			"main": [
+				[
+					{
+						"node": "Post to Slack",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"IAQi4EQaDUrwMBqW"
+	]
+}

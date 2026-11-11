@@ -1,0 +1,36 @@
+{
+	"id": "7Zeg0dnQQKXOgyVw",
+	"name": "maintenance_tickets",
+	"columns": [
+		{
+			"id": "ZfYCSHvZhQzaDtaY",
+			"name": "asset_tag",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "N8h5gTcqaljDmyb7",
+			"name": "summary",
+			"type": "string",
+			"index": 1
+		},
+		{
+			"id": "VEusvXGUihAuInnf",
+			"name": "priority",
+			"type": "string",
+			"index": 2
+		},
+		{
+			"id": "kjCXepYNleuJd2rS",
+			"name": "status",
+			"type": "string",
+			"index": 3
+		},
+		{
+			"id": "7i7J929E7KYobkxS",
+			"name": "opened_at",
+			"type": "date",
+			"index": 4
+		}
+	]
+}

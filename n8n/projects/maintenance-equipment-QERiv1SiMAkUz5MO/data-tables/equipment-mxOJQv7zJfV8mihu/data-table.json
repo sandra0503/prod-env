@@ -1,0 +1,36 @@
+{
+	"id": "mxOJQv7zJfV8mihu",
+	"name": "equipment",
+	"columns": [
+		{
+			"id": "qQHYcggAyGBVoAxN",
+			"name": "asset_tag",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "W4HNi5PMelrSHBao",
+			"name": "kind",
+			"type": "string",
+			"index": 1
+		},
+		{
+			"id": "lOWZ9K8P98vTN1Po",
+			"name": "zone",
+			"type": "string",
+			"index": 2
+		},
+		{
+			"id": "XJNbAfqzcjKxT8Ik",
+			"name": "run_hours",
+			"type": "number",
+			"index": 3
+		},
+		{
+			"id": "RYzgAV2vPGaM7jIV",
+			"name": "last_service",
+			"type": "date",
+			"index": 4
+		}
+	]
+}

@@ -1,0 +1,190 @@
+{
+	"id": "f2nivlVtqCJK0xkS",
+	"name": "Poll Climate Sensors",
+	"nodes": [
+		{
+			"id": "56b493e1-04bf-4168-a29e-496ce9680ee0",
+			"name": "Every 5 minutes",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "*/5 * * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "c4f2e790-49d9-4440-8507-d4c4a5d0797c",
+			"name": "Fetch zone readings",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"method": "GET",
+				"url": "https://gateway.greenspire-farms.example/v2/zones/readings",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "SXebd0dOtcTvrKSp"
+				}
+			}
+		},
+		{
+			"id": "0dad2306-c540-4e46-9340-62fb2766a280",
+			"name": "Store reading",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"zone": "={{ $json.zone }}",
+						"temperature_c": "={{ $json.temperature }}",
+						"humidity_pct": "={{ $json.humidity }}",
+						"co2_ppm": "={{ $json.co2 }}",
+						"recorded_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "uJ93Do8loEQMEu8K",
+					"mode": "list",
+					"cachedResultName": "climate_readings"
+				}
+			}
+		},
+		{
+			"id": "b317cc3e-eb02-44cf-8adc-12f711a9ded1",
+			"name": "Out of range?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "strict",
+						"version": 2
+					},
+					"conditions": [
+						{
+							"id": "2df0bc15-4eb5-455a-b778-e88dd50f5cfb",
+							"leftValue": "={{ Math.abs($json.temperature_c - Number($vars.TEMP_TARGET_C)) }}",
+							"rightValue": "={{ Number($vars.TEMP_ALERT_DELTA_C) }}",
+							"operator": {
+								"type": "number",
+								"operation": "gt"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "754a9cd9-e39f-4538-bdb1-7afbea62003b",
+			"name": "Send alert",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.2,
+			"position": [
+				960,
+				0
+			],
+			"parameters": {
+				"source": "database",
+				"options": {},
+				"workflowId": {
+					"__rl": true,
+					"value": "zkV3WS5QBiK6GCEK",
+					"mode": "list",
+					"cachedResultName": "Notify Climate Alert"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Every 5 minutes": {
+			"main": [
+				[
+					{
+						"node": "Fetch zone readings",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Fetch zone readings": {
+			"main": [
+				[
+					{
+						"node": "Store reading",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Store reading": {
+			"main": [
+				[
+					{
+						"node": "Out of range?",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Out of range?": {
+			"main": [
+				[
+					{
+						"node": "Send alert",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "Zrt9CvhrhwpTVU2O",
+	"isArchived": false,
+	"tagIds": [
+		"6lKtuzOrSQpwsIId"
+	]
+}

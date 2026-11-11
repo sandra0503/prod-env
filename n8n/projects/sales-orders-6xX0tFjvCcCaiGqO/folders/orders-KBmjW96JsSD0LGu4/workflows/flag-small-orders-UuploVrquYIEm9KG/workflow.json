@@ -1,0 +1,113 @@
+{
+	"id": "UuploVrquYIEm9KG",
+	"name": "Flag Small Orders",
+	"nodes": [
+		{
+			"id": "2e444b48-2cc2-4d7a-a864-5e713ef810a3",
+			"name": "Order placed",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "sales/order-placed",
+				"options": {}
+			},
+			"webhookId": "3f018c74-7ba0-4b04-ba0b-3c2c54b19674"
+		},
+		{
+			"id": "ef9cc255-324e-4bac-9018-d830d80cdb50",
+			"name": "Below minimum?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "strict",
+						"version": 2
+					},
+					"conditions": [
+						{
+							"id": "aa1c60cc-aa08-44bc-b4d4-f6a2e3cdfac6",
+							"leftValue": "={{ $json.body.kg }}",
+							"rightValue": "={{ Number($vars.MIN_ORDER_KG) }}",
+							"operator": {
+								"type": "number",
+								"operation": "lt"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "a4ca71dd-501e-4f96-a104-6d38786680f3",
+			"name": "Warn sales",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "sales",
+					"mode": "name"
+				},
+				"text": "=Order {{ $json.body.order_no }} is under {{ $vars.MIN_ORDER_KG }} kg.",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "JNiEp18ou394Ter9"
+				}
+			},
+			"webhookId": "37f3b3d0-2902-4861-b734-139d89a76a53"
+		}
+	],
+	"connections": {
+		"Order placed": {
+			"main": [
+				[
+					{
+						"node": "Below minimum?",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Below minimum?": {
+			"main": [
+				[
+					{
+						"node": "Warn sales",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "KBmjW96JsSD0LGu4",
+	"isArchived": false,
+	"tagIds": [
+		"ll5QGUWEoRjrSDzd"
+	]
+}

@@ -1,0 +1,110 @@
+{
+	"id": "zkrwWRYD4czEdLn0",
+	"name": "Escalate Failed Sample",
+	"nodes": [
+		{
+			"id": "4dd006b8-b657-4ebb-919c-c906b21ec98b",
+			"name": "When called by another workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inputSource": "passthrough"
+			}
+		},
+		{
+			"id": "c5314ded-f3a4-4b50-bd9b-a8d88b7fcf06",
+			"name": "Open nonconformity",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"batch_code": "={{ $json.batch_code }}",
+						"reason": "=Failed {{ $json.test }}",
+						"status": "open",
+						"opened_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "CsKcIjKlYVL8axjD",
+					"mode": "list",
+					"cachedResultName": "qa_nonconformities"
+				}
+			}
+		},
+		{
+			"id": "a77b5221-e874-4390-abe3-44d4117bd973",
+			"name": "Mail quality lead",
+			"type": "n8n-nodes-base.emailSend",
+			"typeVersion": 2.1,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"fromEmail": "farm-automation@greenspire-farms.example",
+				"toEmail": "={{ $vars.QA_ESCALATION_EMAIL }}",
+				"subject": "=Failed sample {{ $json.batch_code }}",
+				"emailFormat": "text",
+				"text": "=Test {{ $json.test }} returned {{ $json.result_cfu }} CFU.",
+				"options": {}
+			},
+			"credentials": {
+				"smtp": {
+					"id": "M5qHS8pSrUR5ko9z"
+				}
+			},
+			"webhookId": "ad5ae959-2c02-4385-a645-eaf7f9197eff"
+		}
+	],
+	"connections": {
+		"When called by another workflow": {
+			"main": [
+				[
+					{
+						"node": "Open nonconformity",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Open nonconformity": {
+			"main": [
+				[
+					{
+						"node": "Mail quality lead",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "zDZCfLDYcuA2Fc0V",
+	"isArchived": false,
+	"tagIds": [
+		"HrrAulEUm3UZ5mlN",
+		"HYi8b0fVqloz5clQ"
+	]
+}

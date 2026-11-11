@@ -1,0 +1,30 @@
+{
+	"id": "zHU5QGqbGWnPJalQ",
+	"name": "customers",
+	"columns": [
+		{
+			"id": "1MRopBQjIzsppwv6",
+			"name": "name",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "X9vJV4kaUKqs8qf7",
+			"name": "segment",
+			"type": "string",
+			"index": 1
+		},
+		{
+			"id": "0SzUvi0tsqzi9zwB",
+			"name": "email",
+			"type": "string",
+			"index": 2
+		},
+		{
+			"id": "J5Rk6CoqP6bg7XnQ",
+			"name": "city",
+			"type": "string",
+			"index": 3
+		}
+	]
+}

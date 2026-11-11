@@ -1,0 +1,115 @@
+{
+	"id": "DWO4qArCACuQhh17",
+	"name": "Pull Lab Results",
+	"nodes": [
+		{
+			"id": "ef2afe9e-2aef-490b-9260-f49433083035",
+			"name": "Every hour",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 * * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "c5efd1ac-abb8-4c1e-8d68-669703dd89fa",
+			"name": "Fetch new results",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"method": "GET",
+				"url": "https://lab.greenspire-farms.example/api/results?since=1h",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "3zXAGR8PNuNpCTx4"
+				}
+			}
+		},
+		{
+			"id": "9f96bb6a-f952-4bbe-ad4c-8ae3ff38bfba",
+			"name": "Store result",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"batch_code": "={{ $json.batch }}",
+						"test": "={{ $json.test }}",
+						"result_cfu": "={{ $json.cfu }}",
+						"passed": "={{ $json.passed }}",
+						"tested_at": "={{ $json.tested_at }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "BQFZpZmqfXK3MBMf",
+					"mode": "list",
+					"cachedResultName": "qa_samples"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Every hour": {
+			"main": [
+				[
+					{
+						"node": "Fetch new results",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Fetch new results": {
+			"main": [
+				[
+					{
+						"node": "Store result",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "zDZCfLDYcuA2Fc0V",
+	"isArchived": false,
+	"tagIds": [
+		"ONC5OpwRwqXi6a7O"
+	]
+}

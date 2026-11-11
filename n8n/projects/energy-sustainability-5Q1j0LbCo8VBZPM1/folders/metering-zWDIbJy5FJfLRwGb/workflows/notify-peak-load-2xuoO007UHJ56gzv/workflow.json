@@ -1,0 +1,67 @@
+{
+	"id": "2xuoO007UHJ56gzv",
+	"name": "Notify Peak Load",
+	"nodes": [
+		{
+			"id": "7fca4f2f-571a-43d0-bd8b-abfa11f362f9",
+			"name": "When called by another workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inputSource": "passthrough"
+			}
+		},
+		{
+			"id": "e5e1d13b-5975-451d-890c-d489aeb09d8b",
+			"name": "Post to Slack",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "farm-ops-alerts",
+					"mode": "name"
+				},
+				"text": "=:zap: Peak load {{ $json.peak_kw }} kW on {{ $json.meter }} (limit {{ $vars.PEAK_LOAD_KW_LIMIT }} kW, about {{ ($json.peak_kw * $vars.ENERGY_PRICE_EUR_KWH).toFixed(2) }} EUR per hour)",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "wE0UIRLPtpdYcIL1"
+				}
+			},
+			"webhookId": "ebb0fcc8-24f9-479f-b863-dc9cee0eb2d4"
+		}
+	],
+	"connections": {
+		"When called by another workflow": {
+			"main": [
+				[
+					{
+						"node": "Post to Slack",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "zWDIbJy5FJfLRwGb",
+	"isArchived": false,
+	"tagIds": [
+		"HrrAulEUm3UZ5mlN",
+		"HYi8b0fVqloz5clQ"
+	]
+}

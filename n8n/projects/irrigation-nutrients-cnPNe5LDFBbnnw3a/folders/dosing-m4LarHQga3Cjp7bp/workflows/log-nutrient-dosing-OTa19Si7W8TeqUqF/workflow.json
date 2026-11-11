@@ -1,0 +1,159 @@
+{
+	"id": "OTa19Si7W8TeqUqF",
+	"name": "Log Nutrient Dosing",
+	"nodes": [
+		{
+			"id": "d31bb11b-cafb-492f-970e-9d76132d4284",
+			"name": "Dosing event",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "irrigation/dosing",
+				"options": {}
+			},
+			"webhookId": "fc6f6bc5-1a33-4b33-afb2-0c14b6f868ea"
+		},
+		{
+			"id": "a1d4aeca-703d-4866-9d74-0192ffb31bd3",
+			"name": "Store dosing",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"tank": "={{ $json.body.tank }}",
+						"nutrient": "={{ $json.body.nutrient }}",
+						"volume_ml": "={{ $json.body.volume_ml }}",
+						"ec_after": "={{ $json.body.ec }}",
+						"ph_after": "={{ $json.body.ph }}",
+						"dosed_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "8v2oYR4KvSaWNvVC",
+					"mode": "list",
+					"cachedResultName": "nutrient_dosing_log"
+				}
+			}
+		},
+		{
+			"id": "1558bad6-d22b-4805-9cc9-84add0655c47",
+			"name": "pH out of range?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "strict",
+						"version": 2
+					},
+					"conditions": [
+						{
+							"id": "19817275-545c-449f-a982-db66d0eddb5c",
+							"leftValue": "={{ $json.ph_after }}",
+							"rightValue": "={{ Number($vars.PH_MAX) }}",
+							"operator": {
+								"type": "number",
+								"operation": "gt"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "11419b50-067a-4ec1-8138-a5a9b9e77ecd",
+			"name": "Trigger pH correction",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"method": "POST",
+				"url": "https://dosing.greenspire-farms.example/api/correct-ph",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={{ JSON.stringify({ tank: $json.tank, direction: \"down\" }) }}",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "GuHMtxhb9u8do7HD"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Dosing event": {
+			"main": [
+				[
+					{
+						"node": "Store dosing",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Store dosing": {
+			"main": [
+				[
+					{
+						"node": "pH out of range?",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"pH out of range?": {
+			"main": [
+				[
+					{
+						"node": "Trigger pH correction",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "m4LarHQga3Cjp7bp",
+	"isArchived": false,
+	"tagIds": [
+		"jgxWLD6AagEcsefJ"
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"id": "a81izAGygzhHhb9B",
+	"name": "harvest_batches",
+	"columns": [
+		{
+			"id": "XlK0SNuXroFRhAaC",
+			"name": "batch_code",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "UsRjljTcv0uwZSIU",
+			"name": "crop",
+			"type": "string",
+			"index": 1
+		},
+		{
+			"id": "St5B3UWc6iAYzaoF",
+			"name": "zone",
+			"type": "string",
+			"index": 2
+		},
+		{
+			"id": "e0oeWme2juz8tPvP",
+			"name": "weight_kg",
+			"type": "number",
+			"index": 3
+		},
+		{
+			"id": "iogiQFN3luXR4I70",
+			"name": "harvested_at",
+			"type": "date",
+			"index": 4
+		}
+	]
+}

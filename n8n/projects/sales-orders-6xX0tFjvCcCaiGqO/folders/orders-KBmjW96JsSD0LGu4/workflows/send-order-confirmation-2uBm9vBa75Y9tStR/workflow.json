@@ -1,0 +1,107 @@
+{
+	"id": "2uBm9vBa75Y9tStR",
+	"name": "Send Order Confirmation",
+	"nodes": [
+		{
+			"id": "bff21605-4c4b-4770-87d5-bdb2b2c3ae20",
+			"name": "When called by another workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inputSource": "passthrough"
+			}
+		},
+		{
+			"id": "31f997fb-3cec-4225-b8f9-1c3701cd2e3c",
+			"name": "Look up customer",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "name",
+							"condition": "eq",
+							"keyValue": "={{ $json.customer }}"
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "zHU5QGqbGWnPJalQ",
+					"mode": "list",
+					"cachedResultName": "customers"
+				}
+			}
+		},
+		{
+			"id": "4c824d59-351f-4a88-a69e-f391b779cd05",
+			"name": "Mail customer",
+			"type": "n8n-nodes-base.emailSend",
+			"typeVersion": 2.1,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"fromEmail": "farm-automation@greenspire-farms.example",
+				"toEmail": "={{ $json.email }}",
+				"subject": "=Order {{ $('When called by another workflow').item.json.order_no }} confirmed",
+				"emailFormat": "text",
+				"text": "=Hi {{ $json.name }}, we received your order of {{ $('When called by another workflow').item.json.kg }} kg. Orders before {{ $vars.ORDER_CUTOFF_TIME }} ship same day. Delivery: {{ $vars.DELIVERY_REGION }}.",
+				"options": {}
+			},
+			"credentials": {
+				"smtp": {
+					"id": "QzEgtWW9VYqCVo0l"
+				}
+			},
+			"webhookId": "fc20597f-2231-4f0b-a21b-4731826a05bd"
+		}
+	],
+	"connections": {
+		"When called by another workflow": {
+			"main": [
+				[
+					{
+						"node": "Look up customer",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Look up customer": {
+			"main": [
+				[
+					{
+						"node": "Mail customer",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "KBmjW96JsSD0LGu4",
+	"isArchived": false,
+	"tagIds": [
+		"HYi8b0fVqloz5clQ"
+	]
+}

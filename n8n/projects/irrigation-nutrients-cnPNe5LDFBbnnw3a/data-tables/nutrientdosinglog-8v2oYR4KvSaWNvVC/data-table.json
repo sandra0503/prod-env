@@ -1,0 +1,42 @@
+{
+	"id": "8v2oYR4KvSaWNvVC",
+	"name": "nutrient_dosing_log",
+	"columns": [
+		{
+			"id": "WQCAQY7xbRLdvWx0",
+			"name": "tank",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "8Oo0zgTHYecUCy5B",
+			"name": "nutrient",
+			"type": "string",
+			"index": 1
+		},
+		{
+			"id": "s7lJR4YLJ5Pv5Mo6",
+			"name": "volume_ml",
+			"type": "number",
+			"index": 2
+		},
+		{
+			"id": "MsVuxOL1ZTV7o6tv",
+			"name": "ec_after",
+			"type": "number",
+			"index": 3
+		},
+		{
+			"id": "rR4LBGVA3Bpw7kWW",
+			"name": "ph_after",
+			"type": "number",
+			"index": 4
+		},
+		{
+			"id": "Sr5TZs4qsgdqU5us",
+			"name": "dosed_at",
+			"type": "date",
+			"index": 5
+		}
+	]
+}

@@ -1,0 +1,65 @@
+{
+	"id": "lE1bL3DYDb4WeNeY",
+	"name": "Print Batch Labels",
+	"nodes": [
+		{
+			"id": "5ea36221-fd01-42f5-91e0-78eba96f9d6b",
+			"name": "When called by another workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inputSource": "passthrough"
+			}
+		},
+		{
+			"id": "840830a8-b777-4347-a509-6e4d34f6e391",
+			"name": "Send to label printer",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"method": "POST",
+				"url": "https://labels.greenspire-farms.example/api/print",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={{ JSON.stringify({ batch: $json.batch_code, shelf_life_days: Number($vars.SHELF_LIFE_DAYS) }) }}",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpBasicAuth"
+			},
+			"credentials": {
+				"httpBasicAuth": {
+					"id": "r0SSsqkrfNn01GnF"
+				}
+			}
+		}
+	],
+	"connections": {
+		"When called by another workflow": {
+			"main": [
+				[
+					{
+						"node": "Send to label printer",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "zoBnl3PUwRWSwLFG",
+	"isArchived": false,
+	"tagIds": [
+		"HYi8b0fVqloz5clQ"
+	]
+}

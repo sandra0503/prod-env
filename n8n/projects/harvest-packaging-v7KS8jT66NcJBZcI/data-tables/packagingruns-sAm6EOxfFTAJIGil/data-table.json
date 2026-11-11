@@ -1,0 +1,30 @@
+{
+	"id": "sAm6EOxfFTAJIGil",
+	"name": "packaging_runs",
+	"columns": [
+		{
+			"id": "jXIc1oDWQbSSb9mx",
+			"name": "batch_code",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "2I3UuiikyCE6gT6f",
+			"name": "packs",
+			"type": "number",
+			"index": 1
+		},
+		{
+			"id": "WLxZZLg7FPA8ny2D",
+			"name": "operator",
+			"type": "string",
+			"index": 2
+		},
+		{
+			"id": "ZIvfgpiUosROgyS3",
+			"name": "packed_at",
+			"type": "date",
+			"index": 3
+		}
+	]
+}

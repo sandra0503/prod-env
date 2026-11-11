@@ -1,0 +1,168 @@
+{
+	"id": "TWBuhg2Qm7DV1eXl",
+	"name": "Adjust Zone Setpoint",
+	"nodes": [
+		{
+			"id": "fe091f93-b346-4a80-ba44-4bec7d8a2392",
+			"name": "Setpoint request",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "climate/setpoint",
+				"options": {}
+			},
+			"webhookId": "1d295464-f933-4a50-acbf-183604fb7ba4"
+		},
+		{
+			"id": "28527c5f-7c2d-4e74-ad8e-4e7254b283fe",
+			"name": "Normalise payload",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"assignments": {
+					"assignments": [
+						{
+							"id": "53d5087f-a3f8-4038-b724-3a3f7e767e0d",
+							"name": "zone",
+							"value": "={{ $json.body.zone }}",
+							"type": "string"
+						},
+						{
+							"id": "7c9a614a-d6ca-40c2-878e-83f9f5323c0f",
+							"name": "temperature_c",
+							"value": "={{ $json.body.temperature_c }}",
+							"type": "string"
+						},
+						{
+							"id": "e0e891d5-29a8-49e5-8320-4359fc3a0345",
+							"name": "updated_by",
+							"value": "={{ $json.body.user }}",
+							"type": "string"
+						}
+					]
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "673d7d4f-6621-4ea6-9c04-db93dd66c990",
+			"name": "Push to gateway",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"method": "POST",
+				"url": "https://gateway.greenspire-farms.example/v2/zones/setpoint",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={{ JSON.stringify($json) }}",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "SXebd0dOtcTvrKSp"
+				}
+			}
+		},
+		{
+			"id": "ccc5b745-f759-45f2-8a40-0556d05b0281",
+			"name": "Record setpoint",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "upsert",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "zone",
+							"condition": "eq",
+							"keyValue": "={{ $json.zone }}"
+						}
+					]
+				},
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"zone": "={{ $json.zone }}",
+						"temperature_c": "={{ $json.temperature_c }}",
+						"humidity_pct": 65,
+						"updated_by": "={{ $json.updated_by }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "xQFbNfefAU3F3ekL",
+					"mode": "list",
+					"cachedResultName": "zone_setpoints"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Setpoint request": {
+			"main": [
+				[
+					{
+						"node": "Normalise payload",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Normalise payload": {
+			"main": [
+				[
+					{
+						"node": "Push to gateway",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Push to gateway": {
+			"main": [
+				[
+					{
+						"node": "Record setpoint",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"jgxWLD6AagEcsefJ"
+	]
+}

@@ -1,0 +1,5 @@
+{
+	"name": "RESERVOIR_MIN_LITERS",
+	"type": "string",
+	"value": "250"
+}

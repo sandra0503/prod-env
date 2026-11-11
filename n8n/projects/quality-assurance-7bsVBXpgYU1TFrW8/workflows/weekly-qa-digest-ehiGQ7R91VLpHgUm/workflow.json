@@ -1,0 +1,116 @@
+{
+	"id": "ehiGQ7R91VLpHgUm",
+	"name": "Weekly QA Digest",
+	"nodes": [
+		{
+			"id": "57726cc2-d188-42a1-9711-603af74e4df6",
+			"name": "Fridays 15:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 15 * * 5"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "2a8b1d1f-cc48-4a3a-abac-a1a49edea2d4",
+			"name": "Open nonconformities",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "status",
+							"condition": "eq",
+							"keyValue": "open"
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "CsKcIjKlYVL8axjD",
+					"mode": "list",
+					"cachedResultName": "qa_nonconformities"
+				}
+			}
+		},
+		{
+			"id": "feb8dc04-6e9d-4a52-bc15-89e62096c37e",
+			"name": "Post digest",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "quality",
+					"mode": "name"
+				},
+				"text": "=Open: {{ $json.batch_code }} — {{ $json.reason }} (sampling rate {{ $vars.SAMPLE_RATE_PCT }} %)",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "AkStz70kxQRsWYMJ"
+				}
+			},
+			"webhookId": "7fe97bd9-e271-42c6-826a-c2877733ca45"
+		}
+	],
+	"connections": {
+		"Fridays 15:00": {
+			"main": [
+				[
+					{
+						"node": "Open nonconformities",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Open nonconformities": {
+			"main": [
+				[
+					{
+						"node": "Post digest",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"pe0q5cVVTVsWqNT7"
+	]
+}

@@ -1,0 +1,67 @@
+{
+	"id": "lRjk5R2b5TqwMG9o",
+	"name": "Notify Low Seed Stock",
+	"nodes": [
+		{
+			"id": "de3ace21-8704-4e2d-b53d-5d689b0f347a",
+			"name": "When called by another workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inputSource": "passthrough"
+			}
+		},
+		{
+			"id": "f7886a8d-2a33-45c0-b148-97dcacfdb143",
+			"name": "Post to Slack",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "seeding",
+					"mode": "name"
+				},
+				"text": "=:seedling: {{ $json.variety }} is down to {{ $json.seeds_remaining_g }} g.",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "plCbtE0EqP9cdpjL"
+				}
+			},
+			"webhookId": "ed012dff-5ec5-4950-a250-47fe9f83c38a"
+		}
+	],
+	"connections": {
+		"When called by another workflow": {
+			"main": [
+				[
+					{
+						"node": "Post to Slack",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "KpRXyTfQzEoZJJHz",
+	"isArchived": false,
+	"tagIds": [
+		"HrrAulEUm3UZ5mlN",
+		"HYi8b0fVqloz5clQ"
+	]
+}

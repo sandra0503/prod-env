@@ -1,0 +1,63 @@
+{
+	"id": "lRovk85bGqW6UDyv",
+	"name": "Page On-call Technician",
+	"nodes": [
+		{
+			"id": "a59a29bb-0f1c-4e7d-9738-d991a1039c97",
+			"name": "When called by another workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inputSource": "passthrough"
+			}
+		},
+		{
+			"id": "a82275a8-376c-453d-9f73-150fc3a24fe6",
+			"name": "Send SMS",
+			"type": "n8n-nodes-base.twilio",
+			"typeVersion": 1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "sms",
+				"operation": "send",
+				"from": "+4930555010",
+				"to": "={{ $vars.ONCALL_PHONE }}",
+				"message": "=[Greenspire] {{ $json.asset_tag }}: {{ $json.summary }}"
+			},
+			"credentials": {
+				"twilioApi": {
+					"id": "0okUHx0oAnLtm1Fv"
+				}
+			}
+		}
+	],
+	"connections": {
+		"When called by another workflow": {
+			"main": [
+				[
+					{
+						"node": "Send SMS",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "uk9s39HAEkZ6BXF5",
+	"isArchived": false,
+	"tagIds": [
+		"HrrAulEUm3UZ5mlN",
+		"HYi8b0fVqloz5clQ"
+	]
+}

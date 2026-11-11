@@ -1,0 +1,160 @@
+{
+	"id": "nZyhinajXcMdzHNE",
+	"name": "Check Service Intervals",
+	"nodes": [
+		{
+			"id": "97a82fef-2ec0-4311-b025-01c7f18ea2e0",
+			"name": "Every day 05:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 5 * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "dc88664c-1737-4477-a472-d7cb81204c26",
+			"name": "Get LED arrays",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "kind",
+							"condition": "eq",
+							"keyValue": "LED array"
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "mxOJQv7zJfV8mihu",
+					"mode": "list",
+					"cachedResultName": "equipment"
+				}
+			}
+		},
+		{
+			"id": "e6db660f-54eb-4904-ae89-b8b380f307d5",
+			"name": "Near service hours?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "strict",
+						"version": 2
+					},
+					"conditions": [
+						{
+							"id": "29c39bfc-ec98-4ef0-ae3c-016f5c459e6e",
+							"leftValue": "={{ $json.run_hours }}",
+							"rightValue": "={{ Number($vars.LED_SERVICE_HOURS) - 500 }}",
+							"operator": {
+								"type": "number",
+								"operation": "gt"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "e53159db-bfa3-4e1c-9213-adf03c8ee6f3",
+			"name": "Warn maintenance",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "maintenance",
+					"mode": "name"
+				},
+				"text": "=:wrench: {{ $json.asset_tag }} has {{ $json.run_hours }} h. Service due at {{ $vars.LED_SERVICE_HOURS }} h (pumps every {{ $vars.PUMP_SERVICE_INTERVAL_DAYS }} d).",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "x8ACgUuzbcQDT1i5"
+				}
+			},
+			"webhookId": "ebffe6e8-adf9-46cc-a7ad-8e0e099ef96c"
+		}
+	],
+	"connections": {
+		"Every day 05:00": {
+			"main": [
+				[
+					{
+						"node": "Get LED arrays",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Get LED arrays": {
+			"main": [
+				[
+					{
+						"node": "Near service hours?",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Near service hours?": {
+			"main": [
+				[
+					{
+						"node": "Warn maintenance",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"txMRyD1Yi4hcIEvp"
+	]
+}

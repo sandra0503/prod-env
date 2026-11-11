@@ -1,0 +1,146 @@
+{
+	"id": "H3pZJvdUyrrj5QJg",
+	"name": "Reorder Seeds",
+	"nodes": [
+		{
+			"id": "00db925c-c761-498a-995f-196ff2e35c53",
+			"name": "Fridays 09:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 9 * * 5"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "70bfdcfc-bbdb-41dc-b25a-150f1aca082a",
+			"name": "Get low stock",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "seeds_remaining_g",
+							"condition": "lt",
+							"keyValue": "={{ Number($vars.SEED_REORDER_THRESHOLD_G) }}"
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "UGMGeqMZY6tJEW5e",
+					"mode": "list",
+					"cachedResultName": "seed_batches"
+				}
+			}
+		},
+		{
+			"id": "326e7da8-f8be-4873-b821-7d092c5cdbac",
+			"name": "Create supplier order",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"method": "POST",
+				"url": "https://api.seedco.example/v1/orders",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={{ JSON.stringify({ sku: $json.batch_code, grams: 1000 }) }}",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "lymMqZFSi1e28a9Z"
+				}
+			}
+		},
+		{
+			"id": "a77c6977-0521-4378-9dbd-6cb60f36c1f4",
+			"name": "Tell the team",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.2,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"source": "database",
+				"options": {},
+				"workflowId": {
+					"__rl": true,
+					"value": "lRjk5R2b5TqwMG9o",
+					"mode": "list",
+					"cachedResultName": "Notify Low Seed Stock"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Fridays 09:00": {
+			"main": [
+				[
+					{
+						"node": "Get low stock",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Get low stock": {
+			"main": [
+				[
+					{
+						"node": "Create supplier order",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Create supplier order": {
+			"main": [
+				[
+					{
+						"node": "Tell the team",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "KpRXyTfQzEoZJJHz",
+	"isArchived": false,
+	"tagIds": [
+		"WB5sCXY02Gq8Krgw"
+	]
+}

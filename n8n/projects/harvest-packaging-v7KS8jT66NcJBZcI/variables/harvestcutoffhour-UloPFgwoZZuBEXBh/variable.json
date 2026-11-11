@@ -1,0 +1,5 @@
+{
+	"name": "HARVEST_CUTOFF_HOUR",
+	"type": "string",
+	"value": "5"
+}

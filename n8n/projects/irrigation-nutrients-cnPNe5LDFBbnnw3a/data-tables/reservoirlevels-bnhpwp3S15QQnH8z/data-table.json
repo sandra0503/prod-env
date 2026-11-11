@@ -1,0 +1,24 @@
+{
+	"id": "bnhpwp3S15QQnH8z",
+	"name": "reservoir_levels",
+	"columns": [
+		{
+			"id": "PS3AoDyYtIeM17RE",
+			"name": "tank",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "oTpNwIwqslBJcQ9z",
+			"name": "liters",
+			"type": "number",
+			"index": 1
+		},
+		{
+			"id": "3sXW7zGewKSbAGd6",
+			"name": "checked_at",
+			"type": "date",
+			"index": 2
+		}
+	]
+}

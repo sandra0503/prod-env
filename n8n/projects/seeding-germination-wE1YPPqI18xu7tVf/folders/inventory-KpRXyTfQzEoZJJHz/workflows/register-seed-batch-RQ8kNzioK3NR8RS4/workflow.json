@@ -1,0 +1,167 @@
+{
+	"id": "RQ8kNzioK3NR8RS4",
+	"name": "Register Seed Batch",
+	"nodes": [
+		{
+			"id": "36aaf4d9-aa89-47f0-b304-a798cf765512",
+			"name": "New batch",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "seeding/batch",
+				"options": {}
+			},
+			"webhookId": "66a80bb3-cf98-407f-a077-968e637cf03a"
+		},
+		{
+			"id": "b22eb6f6-07ff-4219-a263-dafa9d14c4e4",
+			"name": "Build record",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"assignments": {
+					"assignments": [
+						{
+							"id": "f8e4d96c-b63b-4721-865e-5a459248b263",
+							"name": "batch_code",
+							"value": "={{ $json.body.batch_code }}",
+							"type": "string"
+						},
+						{
+							"id": "fc4fc1d9-357e-4157-9f09-ef3b55b29f6a",
+							"name": "crop",
+							"value": "={{ $json.body.crop }}",
+							"type": "string"
+						},
+						{
+							"id": "1dc310e7-1298-42c7-8536-5dbd9f62466f",
+							"name": "variety",
+							"value": "={{ $json.body.variety }}",
+							"type": "string"
+						},
+						{
+							"id": "fc194272-6fa9-43a7-add3-4adcea3be2c5",
+							"name": "seeds_remaining_g",
+							"value": "={{ $json.body.grams }}",
+							"type": "string"
+						}
+					]
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "b6ef8d6d-5000-4fc5-b92f-9ac0b49cd75d",
+			"name": "Store batch",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"batch_code": "={{ $json.batch_code }}",
+						"crop": "={{ $json.crop }}",
+						"variety": "={{ $json.variety }}",
+						"seeds_remaining_g": "={{ $json.seeds_remaining_g }}",
+						"received_on": "={{ $now.toISODate() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "UGMGeqMZY6tJEW5e",
+					"mode": "list",
+					"cachedResultName": "seed_batches"
+				}
+			}
+		},
+		{
+			"id": "804204c2-8367-4dda-a38b-f57abb642894",
+			"name": "Confirm in Slack",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "seeding",
+					"mode": "name"
+				},
+				"text": "=Batch {{ $json.batch_code }} ({{ $json.variety }}) registered. Expect germination in {{ $vars.GERMINATION_DAYS_LETTUCE }} d (lettuce) or {{ $vars.GERMINATION_DAYS_BASIL }} d (basil).",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "plCbtE0EqP9cdpjL"
+				}
+			},
+			"webhookId": "a6010788-131b-4f60-bdcb-f3697f0f2f69"
+		}
+	],
+	"connections": {
+		"New batch": {
+			"main": [
+				[
+					{
+						"node": "Build record",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Build record": {
+			"main": [
+				[
+					{
+						"node": "Store batch",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Store batch": {
+			"main": [
+				[
+					{
+						"node": "Confirm in Slack",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "KpRXyTfQzEoZJJHz",
+	"isArchived": false,
+	"tagIds": [
+		"WB5sCXY02Gq8Krgw"
+	]
+}

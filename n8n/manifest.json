@@ -1,0 +1,2291 @@
+{
+	"packageFormatVersion": "1",
+	"sourceN8nVersion": "2.48.0",
+	"sourceId": "5effaf99fab70d288cf0d7bb66e6851161598e487f6d82ce00d19985bead347d",
+	"workflows": [
+		{
+			"id": "f2nivlVtqCJK0xkS",
+			"name": "Poll Climate Sensors",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/folders/alerts-Zrt9CvhrhwpTVU2O/workflows/poll-climate-sensors-f2nivlVtqCJK0xkS",
+			"isArchived": false
+		},
+		{
+			"id": "zkV3WS5QBiK6GCEK",
+			"name": "Notify Climate Alert",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/folders/alerts-Zrt9CvhrhwpTVU2O/workflows/notify-climate-alert-zkV3WS5QBiK6GCEK",
+			"isArchived": false
+		},
+		{
+			"id": "5ehc6WXuM8xMXbLt",
+			"name": "Daily Climate Summary",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/folders/reports-VOmVxJD50woEvMFj/workflows/daily-climate-summary-5ehc6WXuM8xMXbLt",
+			"isArchived": false
+		},
+		{
+			"id": "TWBuhg2Qm7DV1eXl",
+			"name": "Adjust Zone Setpoint",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/workflows/adjust-zone-setpoint-TWBuhg2Qm7DV1eXl",
+			"isArchived": false
+		},
+		{
+			"id": "3DDX9rjhXE1De8gO",
+			"name": "Check Reservoir Levels",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/folders/dosing-m4LarHQga3Cjp7bp/workflows/check-reservoir-levels-3DDX9rjhXE1De8gO",
+			"isArchived": false
+		},
+		{
+			"id": "KPnWLUiFKquz8tKZ",
+			"name": "Notify Nutrient Alert",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/folders/dosing-m4LarHQga3Cjp7bp/workflows/notify-nutrient-alert-KPnWLUiFKquz8tKZ",
+			"isArchived": false
+		},
+		{
+			"id": "OTa19Si7W8TeqUqF",
+			"name": "Log Nutrient Dosing",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/folders/dosing-m4LarHQga3Cjp7bp/workflows/log-nutrient-dosing-OTa19Si7W8TeqUqF",
+			"isArchived": false
+		},
+		{
+			"id": "SnXduOKWBVOhfMqc",
+			"name": "Weekly EC and pH Report",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/folders/reports-424jKKpzflllcDUo/workflows/weekly-ec-and-ph-report-SnXduOKWBVOhfMqc",
+			"isArchived": false
+		},
+		{
+			"id": "lRjk5R2b5TqwMG9o",
+			"name": "Notify Low Seed Stock",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/folders/inventory-KpRXyTfQzEoZJJHz/workflows/notify-low-seed-stock-lRjk5R2b5TqwMG9o",
+			"isArchived": false
+		},
+		{
+			"id": "RQ8kNzioK3NR8RS4",
+			"name": "Register Seed Batch",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/folders/inventory-KpRXyTfQzEoZJJHz/workflows/register-seed-batch-RQ8kNzioK3NR8RS4",
+			"isArchived": false
+		},
+		{
+			"id": "H3pZJvdUyrrj5QJg",
+			"name": "Reorder Seeds",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/folders/inventory-KpRXyTfQzEoZJJHz/workflows/reorder-seeds-H3pZJvdUyrrj5QJg",
+			"isArchived": false
+		},
+		{
+			"id": "59muQkTaxmJpCy2e",
+			"name": "Germination Check Reminder",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/workflows/germination-check-reminder-59muQkTaxmJpCy2e",
+			"isArchived": false
+		},
+		{
+			"id": "lE1bL3DYDb4WeNeY",
+			"name": "Print Batch Labels",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/folders/labels-zoBnl3PUwRWSwLFG/workflows/print-batch-labels-lE1bL3DYDb4WeNeY",
+			"isArchived": false
+		},
+		{
+			"id": "rCzEiSNF6IS4rpL0",
+			"name": "Record Harvest Batch",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/workflows/record-harvest-batch-rCzEiSNF6IS4rpL0",
+			"isArchived": false
+		},
+		{
+			"id": "m62XyiEnJNQzWcZG",
+			"name": "Log Packaging Run",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/workflows/log-packaging-run-m62XyiEnJNQzWcZG",
+			"isArchived": false
+		},
+		{
+			"id": "PzoOpO27tyVnvgiY",
+			"name": "Daily Harvest Plan",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/workflows/daily-harvest-plan-PzoOpO27tyVnvgiY",
+			"isArchived": false
+		},
+		{
+			"id": "zkrwWRYD4czEdLn0",
+			"name": "Escalate Failed Sample",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/folders/lab-zDZCfLDYcuA2Fc0V/workflows/escalate-failed-sample-zkrwWRYD4czEdLn0",
+			"isArchived": false
+		},
+		{
+			"id": "bJJofPFNYiYa6EDT",
+			"name": "Log Lab Result",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/folders/lab-zDZCfLDYcuA2Fc0V/workflows/log-lab-result-bJJofPFNYiYa6EDT",
+			"isArchived": false
+		},
+		{
+			"id": "DWO4qArCACuQhh17",
+			"name": "Pull Lab Results",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/folders/lab-zDZCfLDYcuA2Fc0V/workflows/pull-lab-results-DWO4qArCACuQhh17",
+			"isArchived": false
+		},
+		{
+			"id": "ehiGQ7R91VLpHgUm",
+			"name": "Weekly QA Digest",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/workflows/weekly-qa-digest-ehiGQ7R91VLpHgUm",
+			"isArchived": false
+		},
+		{
+			"id": "2uBm9vBa75Y9tStR",
+			"name": "Send Order Confirmation",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/folders/orders-KBmjW96JsSD0LGu4/workflows/send-order-confirmation-2uBm9vBa75Y9tStR",
+			"isArchived": false
+		},
+		{
+			"id": "PH6uLP12Ohm2CXcc",
+			"name": "Import New Orders",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/folders/orders-KBmjW96JsSD0LGu4/workflows/import-new-orders-PH6uLP12Ohm2CXcc",
+			"isArchived": false
+		},
+		{
+			"id": "UuploVrquYIEm9KG",
+			"name": "Flag Small Orders",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/folders/orders-KBmjW96JsSD0LGu4/workflows/flag-small-orders-UuploVrquYIEm9KG",
+			"isArchived": false
+		},
+		{
+			"id": "gJGdlWeGYygatYxF",
+			"name": "Weekly Sales Summary",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/folders/customers-2ts1mifQifF0E3c2/workflows/weekly-sales-summary-gJGdlWeGYygatYxF",
+			"isArchived": false
+		},
+		{
+			"id": "lRovk85bGqW6UDyv",
+			"name": "Page On-call Technician",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/folders/tickets-uk9s39HAEkZ6BXF5/workflows/page-on-call-technician-lRovk85bGqW6UDyv",
+			"isArchived": false
+		},
+		{
+			"id": "45m9ODic7DI9ie52",
+			"name": "Create Maintenance Ticket",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/folders/tickets-uk9s39HAEkZ6BXF5/workflows/create-maintenance-ticket-45m9ODic7DI9ie52",
+			"isArchived": false
+		},
+		{
+			"id": "nZyhinajXcMdzHNE",
+			"name": "Check Service Intervals",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/workflows/check-service-intervals-nZyhinajXcMdzHNE",
+			"isArchived": false
+		},
+		{
+			"id": "kJ8ptApjmv4C6lNb",
+			"name": "Equipment Downtime Report",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/workflows/equipment-downtime-report-kJ8ptApjmv4C6lNb",
+			"isArchived": false
+		},
+		{
+			"id": "2xuoO007UHJ56gzv",
+			"name": "Notify Peak Load",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/folders/metering-zWDIbJy5FJfLRwGb/workflows/notify-peak-load-2xuoO007UHJ56gzv",
+			"isArchived": false
+		},
+		{
+			"id": "OUPKjeTJt4r9l1G4",
+			"name": "Collect Meter Readings",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/folders/metering-zWDIbJy5FJfLRwGb/workflows/collect-meter-readings-OUPKjeTJt4r9l1G4",
+			"isArchived": false
+		},
+		{
+			"id": "A6P5iF3rUXUwsup5",
+			"name": "Peak Load Watch",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/folders/metering-zWDIbJy5FJfLRwGb/workflows/peak-load-watch-A6P5iF3rUXUwsup5",
+			"isArchived": false
+		},
+		{
+			"id": "35zm8CC7QVFcEJ73",
+			"name": "Monthly Sustainability Report",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/folders/metering-zWDIbJy5FJfLRwGb/workflows/monthly-sustainability-report-35zm8CC7QVFcEJ73",
+			"isArchived": false
+		},
+		{
+			"id": "CvDqnMgfPq5OT5mD",
+			"name": "Dim Lights On Dirty Grid",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/workflows/dim-lights-on-dirty-grid-CvDqnMgfPq5OT5mD",
+			"isArchived": false
+		}
+	],
+	"folders": [
+		{
+			"id": "Zrt9CvhrhwpTVU2O",
+			"name": "Alerts",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/folders/alerts-Zrt9CvhrhwpTVU2O"
+		},
+		{
+			"id": "VOmVxJD50woEvMFj",
+			"name": "Reports",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/folders/reports-VOmVxJD50woEvMFj"
+		},
+		{
+			"id": "m4LarHQga3Cjp7bp",
+			"name": "Dosing",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/folders/dosing-m4LarHQga3Cjp7bp"
+		},
+		{
+			"id": "424jKKpzflllcDUo",
+			"name": "Reports",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/folders/reports-424jKKpzflllcDUo"
+		},
+		{
+			"id": "KpRXyTfQzEoZJJHz",
+			"name": "Inventory",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/folders/inventory-KpRXyTfQzEoZJJHz"
+		},
+		{
+			"id": "zoBnl3PUwRWSwLFG",
+			"name": "Labels",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/folders/labels-zoBnl3PUwRWSwLFG"
+		},
+		{
+			"id": "zDZCfLDYcuA2Fc0V",
+			"name": "Lab",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/folders/lab-zDZCfLDYcuA2Fc0V"
+		},
+		{
+			"id": "KBmjW96JsSD0LGu4",
+			"name": "Orders",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/folders/orders-KBmjW96JsSD0LGu4"
+		},
+		{
+			"id": "2ts1mifQifF0E3c2",
+			"name": "Customers",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/folders/customers-2ts1mifQifF0E3c2"
+		},
+		{
+			"id": "uk9s39HAEkZ6BXF5",
+			"name": "Tickets",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/folders/tickets-uk9s39HAEkZ6BXF5"
+		},
+		{
+			"id": "zWDIbJy5FJfLRwGb",
+			"name": "Metering",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/folders/metering-zWDIbJy5FJfLRwGb"
+		}
+	],
+	"projects": [
+		{
+			"id": "eenlQ3zF2rCxOiaE",
+			"name": "Climate Control",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE"
+		},
+		{
+			"id": "cnPNe5LDFBbnnw3a",
+			"name": "Irrigation & Nutrients",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a"
+		},
+		{
+			"id": "wE1YPPqI18xu7tVf",
+			"name": "Seeding & Germination",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf"
+		},
+		{
+			"id": "v7KS8jT66NcJBZcI",
+			"name": "Harvest & Packaging",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI"
+		},
+		{
+			"id": "7bsVBXpgYU1TFrW8",
+			"name": "Quality Assurance",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8"
+		},
+		{
+			"id": "6xX0tFjvCcCaiGqO",
+			"name": "Sales & Orders",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO"
+		},
+		{
+			"id": "QERiv1SiMAkUz5MO",
+			"name": "Maintenance & Equipment",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO"
+		},
+		{
+			"id": "5Q1j0LbCo8VBZPM1",
+			"name": "Energy & Sustainability",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1"
+		}
+	],
+	"credentials": [
+		{
+			"id": "SXebd0dOtcTvrKSp",
+			"name": "Sensor Gateway API",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/credentials/sensor-gateway-api-SXebd0dOtcTvrKSp"
+		},
+		{
+			"id": "XxNzjWl3SZPcUUY1",
+			"name": "Farm Ops Slack",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/credentials/farm-ops-slack-XxNzjWl3SZPcUUY1"
+		},
+		{
+			"id": "LsejpyTmVGnoFYcs",
+			"name": "Irrigation Postgres",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/credentials/irrigation-postgres-LsejpyTmVGnoFYcs"
+		},
+		{
+			"id": "JISOjt4VuHx0MbaQ",
+			"name": "Irrigation Slack",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/credentials/irrigation-slack-JISOjt4VuHx0MbaQ"
+		},
+		{
+			"id": "GuHMtxhb9u8do7HD",
+			"name": "Nutrient Dosing Controller",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/credentials/nutrient-dosing-controller-GuHMtxhb9u8do7HD"
+		},
+		{
+			"id": "plCbtE0EqP9cdpjL",
+			"name": "Seeding Slack",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/credentials/seeding-slack-plCbtE0EqP9cdpjL"
+		},
+		{
+			"id": "lymMqZFSi1e28a9Z",
+			"name": "Seed Supplier API",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/credentials/seed-supplier-api-lymMqZFSi1e28a9Z"
+		},
+		{
+			"id": "r0SSsqkrfNn01GnF",
+			"name": "Label Printer API",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/credentials/label-printer-api-r0SSsqkrfNn01GnF"
+		},
+		{
+			"id": "FTzVMwpxRknepIBX",
+			"name": "Packhouse Slack",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/credentials/packhouse-slack-FTzVMwpxRknepIBX"
+		},
+		{
+			"id": "MqwpMSAz8X43TZNA",
+			"name": "Packhouse Mailbox",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/credentials/packhouse-mailbox-MqwpMSAz8X43TZNA"
+		},
+		{
+			"id": "M5qHS8pSrUR5ko9z",
+			"name": "Quality Mailbox",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/credentials/quality-mailbox-M5qHS8pSrUR5ko9z"
+		},
+		{
+			"id": "3zXAGR8PNuNpCTx4",
+			"name": "Lab Results API",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/credentials/lab-results-api-3zXAGR8PNuNpCTx4"
+		},
+		{
+			"id": "AkStz70kxQRsWYMJ",
+			"name": "Quality Slack",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/credentials/quality-slack-AkStz70kxQRsWYMJ"
+		},
+		{
+			"id": "QzEgtWW9VYqCVo0l",
+			"name": "Customer Mailer",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/credentials/customer-mailer-QzEgtWW9VYqCVo0l"
+		},
+		{
+			"id": "yOx2Ik6WNazyve0S",
+			"name": "Customer Portal API",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/credentials/customer-portal-api-yOx2Ik6WNazyve0S"
+		},
+		{
+			"id": "JNiEp18ou394Ter9",
+			"name": "Sales Slack",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/credentials/sales-slack-JNiEp18ou394Ter9"
+		},
+		{
+			"id": "dpz3EvScMglND0i1",
+			"name": "Orders Postgres",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/credentials/orders-postgres-dpz3EvScMglND0i1"
+		},
+		{
+			"id": "0okUHx0oAnLtm1Fv",
+			"name": "On-call SMS",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/credentials/on-call-sms-0okUHx0oAnLtm1Fv"
+		},
+		{
+			"id": "s8ec32VzTg2xYmo2",
+			"name": "CMMS API",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/credentials/cmms-api-s8ec32VzTg2xYmo2"
+		},
+		{
+			"id": "x8ACgUuzbcQDT1i5",
+			"name": "Maintenance Slack",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/credentials/maintenance-slack-x8ACgUuzbcQDT1i5"
+		},
+		{
+			"id": "wE0UIRLPtpdYcIL1",
+			"name": "Energy Slack",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/credentials/energy-slack-wE0UIRLPtpdYcIL1"
+		},
+		{
+			"id": "7mlmh3kzBbsrojw5",
+			"name": "Smart Meter API",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/credentials/smart-meter-api-7mlmh3kzBbsrojw5"
+		},
+		{
+			"id": "zDKvEC1fOt7sDeL4",
+			"name": "Grid Carbon API",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/credentials/grid-carbon-api-zDKvEC1fOt7sDeL4"
+		}
+	],
+	"dataTables": [
+		{
+			"id": "7Zeg0dnQQKXOgyVw",
+			"name": "maintenance_tickets",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/data-tables/maintenancetickets-7Zeg0dnQQKXOgyVw"
+		},
+		{
+			"id": "8v2oYR4KvSaWNvVC",
+			"name": "nutrient_dosing_log",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/data-tables/nutrientdosinglog-8v2oYR4KvSaWNvVC"
+		},
+		{
+			"id": "BQFZpZmqfXK3MBMf",
+			"name": "qa_samples",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/data-tables/qasamples-BQFZpZmqfXK3MBMf"
+		},
+		{
+			"id": "CsKcIjKlYVL8axjD",
+			"name": "qa_nonconformities",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/data-tables/qanonconformities-CsKcIjKlYVL8axjD"
+		},
+		{
+			"id": "N677Ii6LTUpLf4yp",
+			"name": "germination_checks",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/data-tables/germinationchecks-N677Ii6LTUpLf4yp"
+		},
+		{
+			"id": "PckcVOXUlOOalstE",
+			"name": "orders",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/data-tables/orders-PckcVOXUlOOalstE"
+		},
+		{
+			"id": "UGMGeqMZY6tJEW5e",
+			"name": "seed_batches",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/data-tables/seedbatches-UGMGeqMZY6tJEW5e"
+		},
+		{
+			"id": "VIllSZhix1rXubxe",
+			"name": "water_usage",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/data-tables/waterusage-VIllSZhix1rXubxe"
+		},
+		{
+			"id": "a81izAGygzhHhb9B",
+			"name": "harvest_batches",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/data-tables/harvestbatches-a81izAGygzhHhb9B"
+		},
+		{
+			"id": "bnhpwp3S15QQnH8z",
+			"name": "reservoir_levels",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/data-tables/reservoirlevels-bnhpwp3S15QQnH8z"
+		},
+		{
+			"id": "mxOJQv7zJfV8mihu",
+			"name": "equipment",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/data-tables/equipment-mxOJQv7zJfV8mihu"
+		},
+		{
+			"id": "sAm6EOxfFTAJIGil",
+			"name": "packaging_runs",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/data-tables/packagingruns-sAm6EOxfFTAJIGil"
+		},
+		{
+			"id": "uJ93Do8loEQMEu8K",
+			"name": "climate_readings",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/data-tables/climatereadings-uJ93Do8loEQMEu8K"
+		},
+		{
+			"id": "xQFbNfefAU3F3ekL",
+			"name": "zone_setpoints",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/data-tables/zonesetpoints-xQFbNfefAU3F3ekL"
+		},
+		{
+			"id": "xzWoXfwlaFvs1ZUy",
+			"name": "energy_readings",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/data-tables/energyreadings-xzWoXfwlaFvs1ZUy"
+		},
+		{
+			"id": "zHU5QGqbGWnPJalQ",
+			"name": "customers",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/data-tables/customers-zHU5QGqbGWnPJalQ"
+		}
+	],
+	"variables": [
+		{
+			"id": "I8qmKJ44DLMUprZQ",
+			"name": "TEMP_TARGET_C",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/variables/temptargetc-I8qmKJ44DLMUprZQ"
+		},
+		{
+			"id": "spBxDeEiZSU03jUA",
+			"name": "TEMP_ALERT_DELTA_C",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/variables/tempalertdeltac-spBxDeEiZSU03jUA"
+		},
+		{
+			"id": "M4UgOZhBrj2JkXcs",
+			"name": "HUMIDITY_MAX_PCT",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/variables/humiditymaxpct-M4UgOZhBrj2JkXcs"
+		},
+		{
+			"id": "SLS1WIbigWKJgHcW",
+			"name": "CO2_TARGET_PPM",
+			"target": "projects/climate-control-eenlQ3zF2rCxOiaE/variables/co2targetppm-SLS1WIbigWKJgHcW"
+		},
+		{
+			"id": "1lslll4Z6NkaQfoD",
+			"name": "RESERVOIR_MIN_LITERS",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/variables/reservoirminliters-1lslll4Z6NkaQfoD"
+		},
+		{
+			"id": "ktvFW4WzhqhOyZWy",
+			"name": "PH_MAX",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/variables/phmax-ktvFW4WzhqhOyZWy"
+		},
+		{
+			"id": "jIwalL6goDHUjgq2",
+			"name": "EC_TARGET_MS_CM",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/variables/ectargetmscm-jIwalL6goDHUjgq2"
+		},
+		{
+			"id": "lSabGKy3Uoi4lntI",
+			"name": "PH_MIN",
+			"target": "projects/irrigation-nutrients-cnPNe5LDFBbnnw3a/variables/phmin-lSabGKy3Uoi4lntI"
+		},
+		{
+			"id": "he1hgCp1JIH3lUzw",
+			"name": "GERMINATION_DAYS_LETTUCE",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/variables/germinationdayslettuce-he1hgCp1JIH3lUzw"
+		},
+		{
+			"id": "BXkUwVRLZw7qBYIh",
+			"name": "GERMINATION_DAYS_BASIL",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/variables/germinationdaysbasil-BXkUwVRLZw7qBYIh"
+		},
+		{
+			"id": "3mRIk4PtZJO1wTiz",
+			"name": "SEED_REORDER_THRESHOLD_G",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/variables/seedreorderthresholdg-3mRIk4PtZJO1wTiz"
+		},
+		{
+			"id": "g7TRwRRYnC7dbtec",
+			"name": "MIN_GERMINATION_RATE_PCT",
+			"target": "projects/seeding-germination-wE1YPPqI18xu7tVf/variables/mingerminationratepct-g7TRwRRYnC7dbtec"
+		},
+		{
+			"id": "CHUusf4NcL8b5sGM",
+			"name": "SHELF_LIFE_DAYS",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/variables/shelflifedays-CHUusf4NcL8b5sGM"
+		},
+		{
+			"id": "BvbeDvfSiYaIafRQ",
+			"name": "PACK_SIZE_GRAMS",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/variables/packsizegrams-BvbeDvfSiYaIafRQ"
+		},
+		{
+			"id": "UloPFgwoZZuBEXBh",
+			"name": "HARVEST_CUTOFF_HOUR",
+			"target": "projects/harvest-packaging-v7KS8jT66NcJBZcI/variables/harvestcutoffhour-UloPFgwoZZuBEXBh"
+		},
+		{
+			"id": "X8xWDyFfK2uOxkhr",
+			"name": "QA_ESCALATION_EMAIL",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/variables/qaescalationemail-X8xWDyFfK2uOxkhr"
+		},
+		{
+			"id": "mQ41O3WszPJlM16o",
+			"name": "MAX_AEROBIC_COUNT_CFU",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/variables/maxaerobiccountcfu-mQ41O3WszPJlM16o"
+		},
+		{
+			"id": "d5xmmUOarY9rJnJ7",
+			"name": "SAMPLE_RATE_PCT",
+			"target": "projects/quality-assurance-7bsVBXpgYU1TFrW8/variables/sampleratepct-d5xmmUOarY9rJnJ7"
+		},
+		{
+			"id": "amyoXxSDB7QLwygi",
+			"name": "ORDER_CUTOFF_TIME",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/variables/ordercutofftime-amyoXxSDB7QLwygi"
+		},
+		{
+			"id": "YEv6A3YeTfYJryup",
+			"name": "DELIVERY_REGION",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/variables/deliveryregion-YEv6A3YeTfYJryup"
+		},
+		{
+			"id": "QXOVL1DdJg3fNVXN",
+			"name": "MIN_ORDER_KG",
+			"target": "projects/sales-orders-6xX0tFjvCcCaiGqO/variables/minorderkg-QXOVL1DdJg3fNVXN"
+		},
+		{
+			"id": "qN2ZeFE4SBQWCvfa",
+			"name": "ONCALL_PHONE",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/variables/oncallphone-qN2ZeFE4SBQWCvfa"
+		},
+		{
+			"id": "qByihdIBsR1bc2pJ",
+			"name": "LED_SERVICE_HOURS",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/variables/ledservicehours-qByihdIBsR1bc2pJ"
+		},
+		{
+			"id": "CiylAGNBZSn2oU0o",
+			"name": "PUMP_SERVICE_INTERVAL_DAYS",
+			"target": "projects/maintenance-equipment-QERiv1SiMAkUz5MO/variables/pumpserviceintervaldays-CiylAGNBZSn2oU0o"
+		},
+		{
+			"id": "wXVjC0HJkv05NbAB",
+			"name": "PEAK_LOAD_KW_LIMIT",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/variables/peakloadkwlimit-wXVjC0HJkv05NbAB"
+		},
+		{
+			"id": "gBknL1pLsb8Vjr6w",
+			"name": "ENERGY_PRICE_EUR_KWH",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/variables/energypriceeurkwh-gBknL1pLsb8Vjr6w"
+		},
+		{
+			"id": "0pImoANcG3oJGn2S",
+			"name": "DIM_ABOVE_G_CO2_PER_KWH",
+			"target": "projects/energy-sustainability-5Q1j0LbCo8VBZPM1/variables/dimabovegco2perkwh-0pImoANcG3oJGn2S"
+		}
+	],
+	"tags": [
+		{
+			"id": "HrrAulEUm3UZ5mlN",
+			"name": "alerts",
+			"target": "tags/alerts-HrrAulEUm3UZ5mlN"
+		},
+		{
+			"id": "jgxWLD6AagEcsefJ",
+			"name": "control",
+			"target": "tags/control-jgxWLD6AagEcsefJ"
+		},
+		{
+			"id": "WB5sCXY02Gq8Krgw",
+			"name": "inventory",
+			"target": "tags/inventory-WB5sCXY02Gq8Krgw"
+		},
+		{
+			"id": "txMRyD1Yi4hcIEvp",
+			"name": "maintenance",
+			"target": "tags/maintenance-txMRyD1Yi4hcIEvp"
+		},
+		{
+			"id": "6lKtuzOrSQpwsIId",
+			"name": "monitoring",
+			"target": "tags/monitoring-6lKtuzOrSQpwsIId"
+		},
+		{
+			"id": "ll5QGUWEoRjrSDzd",
+			"name": "orders",
+			"target": "tags/orders-ll5QGUWEoRjrSDzd"
+		},
+		{
+			"id": "IAQi4EQaDUrwMBqW",
+			"name": "production",
+			"target": "tags/production-IAQi4EQaDUrwMBqW"
+		},
+		{
+			"id": "ONC5OpwRwqXi6a7O",
+			"name": "quality",
+			"target": "tags/quality-ONC5OpwRwqXi6a7O"
+		},
+		{
+			"id": "pe0q5cVVTVsWqNT7",
+			"name": "reporting",
+			"target": "tags/reporting-pe0q5cVVTVsWqNT7"
+		},
+		{
+			"id": "HYi8b0fVqloz5clQ",
+			"name": "sub-workflow",
+			"target": "tags/sub-workflow-HYi8b0fVqloz5clQ"
+		},
+		{
+			"id": "j1xFDF7e4TR0KrfZ",
+			"name": "sustainability",
+			"target": "tags/sustainability-j1xFDF7e4TR0KrfZ"
+		}
+	],
+	"requirements": {
+		"credentials": [
+			{
+				"id": "SXebd0dOtcTvrKSp",
+				"name": "Sensor Gateway API",
+				"type": "httpHeaderAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "TWBuhg2Qm7DV1eXl"
+					}
+				]
+			},
+			{
+				"id": "XxNzjWl3SZPcUUY1",
+				"name": "Farm Ops Slack",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkV3WS5QBiK6GCEK"
+					},
+					{
+						"kind": "workflow",
+						"id": "5ehc6WXuM8xMXbLt"
+					}
+				]
+			},
+			{
+				"id": "LsejpyTmVGnoFYcs",
+				"name": "Irrigation Postgres",
+				"type": "postgres",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					}
+				]
+			},
+			{
+				"id": "JISOjt4VuHx0MbaQ",
+				"name": "Irrigation Slack",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "KPnWLUiFKquz8tKZ"
+					},
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					}
+				]
+			},
+			{
+				"id": "GuHMtxhb9u8do7HD",
+				"name": "Nutrient Dosing Controller",
+				"type": "httpHeaderAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "OTa19Si7W8TeqUqF"
+					}
+				]
+			},
+			{
+				"id": "plCbtE0EqP9cdpjL",
+				"name": "Seeding Slack",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "lRjk5R2b5TqwMG9o"
+					},
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					},
+					{
+						"kind": "workflow",
+						"id": "59muQkTaxmJpCy2e"
+					}
+				]
+			},
+			{
+				"id": "lymMqZFSi1e28a9Z",
+				"name": "Seed Supplier API",
+				"type": "httpHeaderAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					}
+				]
+			},
+			{
+				"id": "r0SSsqkrfNn01GnF",
+				"name": "Label Printer API",
+				"type": "httpBasicAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "lE1bL3DYDb4WeNeY"
+					}
+				]
+			},
+			{
+				"id": "FTzVMwpxRknepIBX",
+				"name": "Packhouse Slack",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "rCzEiSNF6IS4rpL0"
+					},
+					{
+						"kind": "workflow",
+						"id": "m62XyiEnJNQzWcZG"
+					}
+				]
+			},
+			{
+				"id": "MqwpMSAz8X43TZNA",
+				"name": "Packhouse Mailbox",
+				"type": "smtp",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "PzoOpO27tyVnvgiY"
+					}
+				]
+			},
+			{
+				"id": "M5qHS8pSrUR5ko9z",
+				"name": "Quality Mailbox",
+				"type": "smtp",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkrwWRYD4czEdLn0"
+					}
+				]
+			},
+			{
+				"id": "3zXAGR8PNuNpCTx4",
+				"name": "Lab Results API",
+				"type": "httpHeaderAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "DWO4qArCACuQhh17"
+					}
+				]
+			},
+			{
+				"id": "AkStz70kxQRsWYMJ",
+				"name": "Quality Slack",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "ehiGQ7R91VLpHgUm"
+					}
+				]
+			},
+			{
+				"id": "QzEgtWW9VYqCVo0l",
+				"name": "Customer Mailer",
+				"type": "smtp",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "2uBm9vBa75Y9tStR"
+					}
+				]
+			},
+			{
+				"id": "yOx2Ik6WNazyve0S",
+				"name": "Customer Portal API",
+				"type": "httpHeaderAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "PH6uLP12Ohm2CXcc"
+					}
+				]
+			},
+			{
+				"id": "JNiEp18ou394Ter9",
+				"name": "Sales Slack",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "UuploVrquYIEm9KG"
+					},
+					{
+						"kind": "workflow",
+						"id": "gJGdlWeGYygatYxF"
+					}
+				]
+			},
+			{
+				"id": "dpz3EvScMglND0i1",
+				"name": "Orders Postgres",
+				"type": "postgres",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "gJGdlWeGYygatYxF"
+					}
+				]
+			},
+			{
+				"id": "0okUHx0oAnLtm1Fv",
+				"name": "On-call SMS",
+				"type": "twilioApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "lRovk85bGqW6UDyv"
+					}
+				]
+			},
+			{
+				"id": "s8ec32VzTg2xYmo2",
+				"name": "CMMS API",
+				"type": "httpHeaderAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					},
+					{
+						"kind": "workflow",
+						"id": "kJ8ptApjmv4C6lNb"
+					}
+				]
+			},
+			{
+				"id": "x8ACgUuzbcQDT1i5",
+				"name": "Maintenance Slack",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					},
+					{
+						"kind": "workflow",
+						"id": "kJ8ptApjmv4C6lNb"
+					}
+				]
+			},
+			{
+				"id": "wE0UIRLPtpdYcIL1",
+				"name": "Energy Slack",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "2xuoO007UHJ56gzv"
+					},
+					{
+						"kind": "workflow",
+						"id": "35zm8CC7QVFcEJ73"
+					}
+				]
+			},
+			{
+				"id": "7mlmh3kzBbsrojw5",
+				"name": "Smart Meter API",
+				"type": "httpHeaderAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "OUPKjeTJt4r9l1G4"
+					},
+					{
+						"kind": "workflow",
+						"id": "CvDqnMgfPq5OT5mD"
+					}
+				]
+			},
+			{
+				"id": "zDKvEC1fOt7sDeL4",
+				"name": "Grid Carbon API",
+				"type": "httpHeaderAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "CvDqnMgfPq5OT5mD"
+					}
+				]
+			}
+		],
+		"dataTables": [
+			{
+				"id": "7Zeg0dnQQKXOgyVw",
+				"name": "maintenance_tickets",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					}
+				]
+			},
+			{
+				"id": "8v2oYR4KvSaWNvVC",
+				"name": "nutrient_dosing_log",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "OTa19Si7W8TeqUqF"
+					},
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					}
+				]
+			},
+			{
+				"id": "BQFZpZmqfXK3MBMf",
+				"name": "qa_samples",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "bJJofPFNYiYa6EDT"
+					},
+					{
+						"kind": "workflow",
+						"id": "DWO4qArCACuQhh17"
+					}
+				]
+			},
+			{
+				"id": "CsKcIjKlYVL8axjD",
+				"name": "qa_nonconformities",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkrwWRYD4czEdLn0"
+					},
+					{
+						"kind": "workflow",
+						"id": "ehiGQ7R91VLpHgUm"
+					}
+				]
+			},
+			{
+				"id": "N677Ii6LTUpLf4yp",
+				"name": "germination_checks",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "59muQkTaxmJpCy2e"
+					}
+				]
+			},
+			{
+				"id": "PckcVOXUlOOalstE",
+				"name": "orders",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "PH6uLP12Ohm2CXcc"
+					}
+				]
+			},
+			{
+				"id": "UGMGeqMZY6tJEW5e",
+				"name": "seed_batches",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					},
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					}
+				]
+			},
+			{
+				"id": "VIllSZhix1rXubxe",
+				"name": "water_usage",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "35zm8CC7QVFcEJ73"
+					}
+				]
+			},
+			{
+				"id": "a81izAGygzhHhb9B",
+				"name": "harvest_batches",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "rCzEiSNF6IS4rpL0"
+					},
+					{
+						"kind": "workflow",
+						"id": "PzoOpO27tyVnvgiY"
+					}
+				]
+			},
+			{
+				"id": "bnhpwp3S15QQnH8z",
+				"name": "reservoir_levels",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					}
+				]
+			},
+			{
+				"id": "mxOJQv7zJfV8mihu",
+				"name": "equipment",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					}
+				]
+			},
+			{
+				"id": "sAm6EOxfFTAJIGil",
+				"name": "packaging_runs",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "m62XyiEnJNQzWcZG"
+					}
+				]
+			},
+			{
+				"id": "uJ93Do8loEQMEu8K",
+				"name": "climate_readings",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "5ehc6WXuM8xMXbLt"
+					}
+				]
+			},
+			{
+				"id": "xQFbNfefAU3F3ekL",
+				"name": "zone_setpoints",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "TWBuhg2Qm7DV1eXl"
+					}
+				]
+			},
+			{
+				"id": "xzWoXfwlaFvs1ZUy",
+				"name": "energy_readings",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "OUPKjeTJt4r9l1G4"
+					},
+					{
+						"kind": "workflow",
+						"id": "A6P5iF3rUXUwsup5"
+					}
+				]
+			},
+			{
+				"id": "zHU5QGqbGWnPJalQ",
+				"name": "customers",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "2uBm9vBa75Y9tStR"
+					}
+				]
+			}
+		],
+		"workflows": [
+			{
+				"id": "zkV3WS5QBiK6GCEK",
+				"name": "Notify Climate Alert",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					}
+				]
+			},
+			{
+				"id": "KPnWLUiFKquz8tKZ",
+				"name": "Notify Nutrient Alert",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					}
+				]
+			},
+			{
+				"id": "lRjk5R2b5TqwMG9o",
+				"name": "Notify Low Seed Stock",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					}
+				]
+			},
+			{
+				"id": "lE1bL3DYDb4WeNeY",
+				"name": "Print Batch Labels",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "rCzEiSNF6IS4rpL0"
+					}
+				]
+			},
+			{
+				"id": "zkrwWRYD4czEdLn0",
+				"name": "Escalate Failed Sample",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "bJJofPFNYiYa6EDT"
+					}
+				]
+			},
+			{
+				"id": "2uBm9vBa75Y9tStR",
+				"name": "Send Order Confirmation",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "PH6uLP12Ohm2CXcc"
+					}
+				]
+			},
+			{
+				"id": "lRovk85bGqW6UDyv",
+				"name": "Page On-call Technician",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					}
+				]
+			},
+			{
+				"id": "2xuoO007UHJ56gzv",
+				"name": "Notify Peak Load",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "A6P5iF3rUXUwsup5"
+					}
+				]
+			}
+		],
+		"variables": [
+			{
+				"name": "TEMP_TARGET_C",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "zkV3WS5QBiK6GCEK"
+					}
+				]
+			},
+			{
+				"name": "TEMP_ALERT_DELTA_C",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					}
+				]
+			},
+			{
+				"name": "HUMIDITY_MAX_PCT",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkV3WS5QBiK6GCEK"
+					}
+				]
+			},
+			{
+				"name": "CO2_TARGET_PPM",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkV3WS5QBiK6GCEK"
+					}
+				]
+			},
+			{
+				"name": "RESERVOIR_MIN_LITERS",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					},
+					{
+						"kind": "workflow",
+						"id": "KPnWLUiFKquz8tKZ"
+					}
+				]
+			},
+			{
+				"name": "PH_MAX",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "OTa19Si7W8TeqUqF"
+					},
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					}
+				]
+			},
+			{
+				"name": "EC_TARGET_MS_CM",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					}
+				]
+			},
+			{
+				"name": "PH_MIN",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					}
+				]
+			},
+			{
+				"name": "GERMINATION_DAYS_LETTUCE",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					}
+				]
+			},
+			{
+				"name": "GERMINATION_DAYS_BASIL",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					}
+				]
+			},
+			{
+				"name": "SEED_REORDER_THRESHOLD_G",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					}
+				]
+			},
+			{
+				"name": "MIN_GERMINATION_RATE_PCT",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "59muQkTaxmJpCy2e"
+					}
+				]
+			},
+			{
+				"name": "SHELF_LIFE_DAYS",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "lE1bL3DYDb4WeNeY"
+					}
+				]
+			},
+			{
+				"name": "PACK_SIZE_GRAMS",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "m62XyiEnJNQzWcZG"
+					}
+				]
+			},
+			{
+				"name": "HARVEST_CUTOFF_HOUR",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "PzoOpO27tyVnvgiY"
+					}
+				]
+			},
+			{
+				"name": "QA_ESCALATION_EMAIL",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkrwWRYD4czEdLn0"
+					}
+				]
+			},
+			{
+				"name": "MAX_AEROBIC_COUNT_CFU",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "bJJofPFNYiYa6EDT"
+					}
+				]
+			},
+			{
+				"name": "SAMPLE_RATE_PCT",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "ehiGQ7R91VLpHgUm"
+					}
+				]
+			},
+			{
+				"name": "ORDER_CUTOFF_TIME",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "2uBm9vBa75Y9tStR"
+					}
+				]
+			},
+			{
+				"name": "DELIVERY_REGION",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "2uBm9vBa75Y9tStR"
+					}
+				]
+			},
+			{
+				"name": "MIN_ORDER_KG",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "UuploVrquYIEm9KG"
+					}
+				]
+			},
+			{
+				"name": "ONCALL_PHONE",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "lRovk85bGqW6UDyv"
+					}
+				]
+			},
+			{
+				"name": "LED_SERVICE_HOURS",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					}
+				]
+			},
+			{
+				"name": "PUMP_SERVICE_INTERVAL_DAYS",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					}
+				]
+			},
+			{
+				"name": "PEAK_LOAD_KW_LIMIT",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "2xuoO007UHJ56gzv"
+					},
+					{
+						"kind": "workflow",
+						"id": "A6P5iF3rUXUwsup5"
+					}
+				]
+			},
+			{
+				"name": "ENERGY_PRICE_EUR_KWH",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "2xuoO007UHJ56gzv"
+					}
+				]
+			},
+			{
+				"name": "DIM_ABOVE_G_CO2_PER_KWH",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "CvDqnMgfPq5OT5mD"
+					}
+				]
+			}
+		],
+		"tags": [
+			{
+				"id": "HrrAulEUm3UZ5mlN",
+				"name": "alerts",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkV3WS5QBiK6GCEK"
+					},
+					{
+						"kind": "workflow",
+						"id": "KPnWLUiFKquz8tKZ"
+					},
+					{
+						"kind": "workflow",
+						"id": "lRjk5R2b5TqwMG9o"
+					},
+					{
+						"kind": "workflow",
+						"id": "zkrwWRYD4czEdLn0"
+					},
+					{
+						"kind": "workflow",
+						"id": "lRovk85bGqW6UDyv"
+					},
+					{
+						"kind": "workflow",
+						"id": "2xuoO007UHJ56gzv"
+					},
+					{
+						"kind": "workflow",
+						"id": "A6P5iF3rUXUwsup5"
+					}
+				]
+			},
+			{
+				"id": "jgxWLD6AagEcsefJ",
+				"name": "control",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "TWBuhg2Qm7DV1eXl"
+					},
+					{
+						"kind": "workflow",
+						"id": "OTa19Si7W8TeqUqF"
+					}
+				]
+			},
+			{
+				"id": "WB5sCXY02Gq8Krgw",
+				"name": "inventory",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					},
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					}
+				]
+			},
+			{
+				"id": "txMRyD1Yi4hcIEvp",
+				"name": "maintenance",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					},
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					}
+				]
+			},
+			{
+				"id": "6lKtuzOrSQpwsIId",
+				"name": "monitoring",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					},
+					{
+						"kind": "workflow",
+						"id": "OUPKjeTJt4r9l1G4"
+					}
+				]
+			},
+			{
+				"id": "ll5QGUWEoRjrSDzd",
+				"name": "orders",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "PH6uLP12Ohm2CXcc"
+					},
+					{
+						"kind": "workflow",
+						"id": "UuploVrquYIEm9KG"
+					}
+				]
+			},
+			{
+				"id": "IAQi4EQaDUrwMBqW",
+				"name": "production",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "rCzEiSNF6IS4rpL0"
+					},
+					{
+						"kind": "workflow",
+						"id": "m62XyiEnJNQzWcZG"
+					}
+				]
+			},
+			{
+				"id": "ONC5OpwRwqXi6a7O",
+				"name": "quality",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "bJJofPFNYiYa6EDT"
+					},
+					{
+						"kind": "workflow",
+						"id": "DWO4qArCACuQhh17"
+					}
+				]
+			},
+			{
+				"id": "pe0q5cVVTVsWqNT7",
+				"name": "reporting",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "5ehc6WXuM8xMXbLt"
+					},
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					},
+					{
+						"kind": "workflow",
+						"id": "59muQkTaxmJpCy2e"
+					},
+					{
+						"kind": "workflow",
+						"id": "PzoOpO27tyVnvgiY"
+					},
+					{
+						"kind": "workflow",
+						"id": "ehiGQ7R91VLpHgUm"
+					},
+					{
+						"kind": "workflow",
+						"id": "gJGdlWeGYygatYxF"
+					},
+					{
+						"kind": "workflow",
+						"id": "kJ8ptApjmv4C6lNb"
+					},
+					{
+						"kind": "workflow",
+						"id": "35zm8CC7QVFcEJ73"
+					}
+				]
+			},
+			{
+				"id": "HYi8b0fVqloz5clQ",
+				"name": "sub-workflow",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkV3WS5QBiK6GCEK"
+					},
+					{
+						"kind": "workflow",
+						"id": "KPnWLUiFKquz8tKZ"
+					},
+					{
+						"kind": "workflow",
+						"id": "lRjk5R2b5TqwMG9o"
+					},
+					{
+						"kind": "workflow",
+						"id": "lE1bL3DYDb4WeNeY"
+					},
+					{
+						"kind": "workflow",
+						"id": "zkrwWRYD4czEdLn0"
+					},
+					{
+						"kind": "workflow",
+						"id": "2uBm9vBa75Y9tStR"
+					},
+					{
+						"kind": "workflow",
+						"id": "lRovk85bGqW6UDyv"
+					},
+					{
+						"kind": "workflow",
+						"id": "2xuoO007UHJ56gzv"
+					}
+				]
+			},
+			{
+				"id": "j1xFDF7e4TR0KrfZ",
+				"name": "sustainability",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "35zm8CC7QVFcEJ73"
+					},
+					{
+						"kind": "workflow",
+						"id": "CvDqnMgfPq5OT5mD"
+					}
+				]
+			}
+		],
+		"nodeTypes": [
+			{
+				"type": "n8n-nodes-base.scheduleTrigger",
+				"typeVersion": 1.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "5ehc6WXuM8xMXbLt"
+					},
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					},
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					},
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					},
+					{
+						"kind": "workflow",
+						"id": "59muQkTaxmJpCy2e"
+					},
+					{
+						"kind": "workflow",
+						"id": "PzoOpO27tyVnvgiY"
+					},
+					{
+						"kind": "workflow",
+						"id": "DWO4qArCACuQhh17"
+					},
+					{
+						"kind": "workflow",
+						"id": "ehiGQ7R91VLpHgUm"
+					},
+					{
+						"kind": "workflow",
+						"id": "PH6uLP12Ohm2CXcc"
+					},
+					{
+						"kind": "workflow",
+						"id": "gJGdlWeGYygatYxF"
+					},
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					},
+					{
+						"kind": "workflow",
+						"id": "kJ8ptApjmv4C6lNb"
+					},
+					{
+						"kind": "workflow",
+						"id": "OUPKjeTJt4r9l1G4"
+					},
+					{
+						"kind": "workflow",
+						"id": "A6P5iF3rUXUwsup5"
+					},
+					{
+						"kind": "workflow",
+						"id": "35zm8CC7QVFcEJ73"
+					},
+					{
+						"kind": "workflow",
+						"id": "CvDqnMgfPq5OT5mD"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.httpRequest",
+				"typeVersion": 4.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "TWBuhg2Qm7DV1eXl"
+					},
+					{
+						"kind": "workflow",
+						"id": "OTa19Si7W8TeqUqF"
+					},
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					},
+					{
+						"kind": "workflow",
+						"id": "lE1bL3DYDb4WeNeY"
+					},
+					{
+						"kind": "workflow",
+						"id": "DWO4qArCACuQhh17"
+					},
+					{
+						"kind": "workflow",
+						"id": "PH6uLP12Ohm2CXcc"
+					},
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					},
+					{
+						"kind": "workflow",
+						"id": "kJ8ptApjmv4C6lNb"
+					},
+					{
+						"kind": "workflow",
+						"id": "OUPKjeTJt4r9l1G4"
+					},
+					{
+						"kind": "workflow",
+						"id": "CvDqnMgfPq5OT5mD"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.dataTable",
+				"typeVersion": 1.1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "5ehc6WXuM8xMXbLt"
+					},
+					{
+						"kind": "workflow",
+						"id": "TWBuhg2Qm7DV1eXl"
+					},
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					},
+					{
+						"kind": "workflow",
+						"id": "OTa19Si7W8TeqUqF"
+					},
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					},
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					},
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					},
+					{
+						"kind": "workflow",
+						"id": "59muQkTaxmJpCy2e"
+					},
+					{
+						"kind": "workflow",
+						"id": "rCzEiSNF6IS4rpL0"
+					},
+					{
+						"kind": "workflow",
+						"id": "m62XyiEnJNQzWcZG"
+					},
+					{
+						"kind": "workflow",
+						"id": "PzoOpO27tyVnvgiY"
+					},
+					{
+						"kind": "workflow",
+						"id": "zkrwWRYD4czEdLn0"
+					},
+					{
+						"kind": "workflow",
+						"id": "bJJofPFNYiYa6EDT"
+					},
+					{
+						"kind": "workflow",
+						"id": "DWO4qArCACuQhh17"
+					},
+					{
+						"kind": "workflow",
+						"id": "ehiGQ7R91VLpHgUm"
+					},
+					{
+						"kind": "workflow",
+						"id": "2uBm9vBa75Y9tStR"
+					},
+					{
+						"kind": "workflow",
+						"id": "PH6uLP12Ohm2CXcc"
+					},
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					},
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					},
+					{
+						"kind": "workflow",
+						"id": "OUPKjeTJt4r9l1G4"
+					},
+					{
+						"kind": "workflow",
+						"id": "A6P5iF3rUXUwsup5"
+					},
+					{
+						"kind": "workflow",
+						"id": "35zm8CC7QVFcEJ73"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.if",
+				"typeVersion": 2.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					},
+					{
+						"kind": "workflow",
+						"id": "OTa19Si7W8TeqUqF"
+					},
+					{
+						"kind": "workflow",
+						"id": "bJJofPFNYiYa6EDT"
+					},
+					{
+						"kind": "workflow",
+						"id": "UuploVrquYIEm9KG"
+					},
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					},
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					},
+					{
+						"kind": "workflow",
+						"id": "A6P5iF3rUXUwsup5"
+					},
+					{
+						"kind": "workflow",
+						"id": "CvDqnMgfPq5OT5mD"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.executeWorkflow",
+				"typeVersion": 1.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "f2nivlVtqCJK0xkS"
+					},
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					},
+					{
+						"kind": "workflow",
+						"id": "H3pZJvdUyrrj5QJg"
+					},
+					{
+						"kind": "workflow",
+						"id": "rCzEiSNF6IS4rpL0"
+					},
+					{
+						"kind": "workflow",
+						"id": "bJJofPFNYiYa6EDT"
+					},
+					{
+						"kind": "workflow",
+						"id": "PH6uLP12Ohm2CXcc"
+					},
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					},
+					{
+						"kind": "workflow",
+						"id": "A6P5iF3rUXUwsup5"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.executeWorkflowTrigger",
+				"typeVersion": 1.1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkV3WS5QBiK6GCEK"
+					},
+					{
+						"kind": "workflow",
+						"id": "KPnWLUiFKquz8tKZ"
+					},
+					{
+						"kind": "workflow",
+						"id": "lRjk5R2b5TqwMG9o"
+					},
+					{
+						"kind": "workflow",
+						"id": "lE1bL3DYDb4WeNeY"
+					},
+					{
+						"kind": "workflow",
+						"id": "zkrwWRYD4czEdLn0"
+					},
+					{
+						"kind": "workflow",
+						"id": "2uBm9vBa75Y9tStR"
+					},
+					{
+						"kind": "workflow",
+						"id": "lRovk85bGqW6UDyv"
+					},
+					{
+						"kind": "workflow",
+						"id": "2xuoO007UHJ56gzv"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.slack",
+				"typeVersion": 2.3,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "zkV3WS5QBiK6GCEK"
+					},
+					{
+						"kind": "workflow",
+						"id": "5ehc6WXuM8xMXbLt"
+					},
+					{
+						"kind": "workflow",
+						"id": "KPnWLUiFKquz8tKZ"
+					},
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					},
+					{
+						"kind": "workflow",
+						"id": "lRjk5R2b5TqwMG9o"
+					},
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					},
+					{
+						"kind": "workflow",
+						"id": "59muQkTaxmJpCy2e"
+					},
+					{
+						"kind": "workflow",
+						"id": "rCzEiSNF6IS4rpL0"
+					},
+					{
+						"kind": "workflow",
+						"id": "m62XyiEnJNQzWcZG"
+					},
+					{
+						"kind": "workflow",
+						"id": "ehiGQ7R91VLpHgUm"
+					},
+					{
+						"kind": "workflow",
+						"id": "UuploVrquYIEm9KG"
+					},
+					{
+						"kind": "workflow",
+						"id": "gJGdlWeGYygatYxF"
+					},
+					{
+						"kind": "workflow",
+						"id": "nZyhinajXcMdzHNE"
+					},
+					{
+						"kind": "workflow",
+						"id": "kJ8ptApjmv4C6lNb"
+					},
+					{
+						"kind": "workflow",
+						"id": "2xuoO007UHJ56gzv"
+					},
+					{
+						"kind": "workflow",
+						"id": "35zm8CC7QVFcEJ73"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.code",
+				"typeVersion": 2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "5ehc6WXuM8xMXbLt"
+					},
+					{
+						"kind": "workflow",
+						"id": "SnXduOKWBVOhfMqc"
+					},
+					{
+						"kind": "workflow",
+						"id": "59muQkTaxmJpCy2e"
+					},
+					{
+						"kind": "workflow",
+						"id": "PzoOpO27tyVnvgiY"
+					},
+					{
+						"kind": "workflow",
+						"id": "35zm8CC7QVFcEJ73"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.webhook",
+				"typeVersion": 2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "TWBuhg2Qm7DV1eXl"
+					},
+					{
+						"kind": "workflow",
+						"id": "OTa19Si7W8TeqUqF"
+					},
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					},
+					{
+						"kind": "workflow",
+						"id": "rCzEiSNF6IS4rpL0"
+					},
+					{
+						"kind": "workflow",
+						"id": "m62XyiEnJNQzWcZG"
+					},
+					{
+						"kind": "workflow",
+						"id": "bJJofPFNYiYa6EDT"
+					},
+					{
+						"kind": "workflow",
+						"id": "UuploVrquYIEm9KG"
+					},
+					{
+						"kind": "workflow",
+						"id": "45m9ODic7DI9ie52"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.set",
+				"typeVersion": 3.4,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "TWBuhg2Qm7DV1eXl"
+					},
+					{
+						"kind": "workflow",
+						"id": "RQ8kNzioK3NR8RS4"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.postgres",
+				"typeVersion": 2.5,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "3DDX9rjhXE1De8gO"
+					},
+					{
+						"kind": "workflow",
+						"id": "gJGdlWeGYygatYxF"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.emailSend",
+				"typeVersion": 2.1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "PzoOpO27tyVnvgiY"
+					},
+					{
+						"kind": "workflow",
+						"id": "zkrwWRYD4czEdLn0"
+					},
+					{
+						"kind": "workflow",
+						"id": "2uBm9vBa75Y9tStR"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.twilio",
+				"typeVersion": 1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "lRovk85bGqW6UDyv"
+					}
+				]
+			}
+		]
+	}
+}

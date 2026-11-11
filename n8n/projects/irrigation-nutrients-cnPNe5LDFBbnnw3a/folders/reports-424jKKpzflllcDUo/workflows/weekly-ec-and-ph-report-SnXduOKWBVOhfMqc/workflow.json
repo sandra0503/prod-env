@@ -1,0 +1,140 @@
+{
+	"id": "SnXduOKWBVOhfMqc",
+	"name": "Weekly EC and pH Report",
+	"nodes": [
+		{
+			"id": "eaa05be5-00ef-4ff5-a547-a91e6ac4279d",
+			"name": "Mondays 07:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 7 * * 1"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "854cf8ce-af13-4e2b-9c2d-2ca15a226a98",
+			"name": "Get dosing log",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "tank",
+							"condition": "neq",
+							"keyValue": ""
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "8v2oYR4KvSaWNvVC",
+					"mode": "list",
+					"cachedResultName": "nutrient_dosing_log"
+				}
+			}
+		},
+		{
+			"id": "ed7ffc23-037c-44ea-9bed-4621adbd6cf9",
+			"name": "Compute averages",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"jsCode": "const items = $input.all().map((i) => i.json);\nconst avg = (k) => +(items.reduce((s, r) => s + r[k], 0) / Math.max(items.length, 1)).toFixed(2);\nreturn [{ json: { doses: items.length, avg_ec: avg(\"ec_after\"), avg_ph: avg(\"ph_after\") } }];"
+			}
+		},
+		{
+			"id": "a7bbacf1-7dc9-497a-9ebb-d055e73d290e",
+			"name": "Post report",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "farm-daily",
+					"mode": "name"
+				},
+				"text": "=Last week: {{ $json.doses }} doses, avg EC {{ $json.avg_ec }}, avg pH {{ $json.avg_ph }} (target EC {{ $vars.EC_TARGET_MS_CM }}, pH band {{ $vars.PH_MIN }}-{{ $vars.PH_MAX }})",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "JISOjt4VuHx0MbaQ"
+				}
+			},
+			"webhookId": "04c39529-c14c-402d-b7cf-b8a90270c24c"
+		}
+	],
+	"connections": {
+		"Mondays 07:00": {
+			"main": [
+				[
+					{
+						"node": "Get dosing log",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Get dosing log": {
+			"main": [
+				[
+					{
+						"node": "Compute averages",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Compute averages": {
+			"main": [
+				[
+					{
+						"node": "Post report",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "424jKKpzflllcDUo",
+	"isArchived": false,
+	"tagIds": [
+		"pe0q5cVVTVsWqNT7"
+	]
+}

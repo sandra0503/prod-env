@@ -1,0 +1,146 @@
+{
+	"id": "rCzEiSNF6IS4rpL0",
+	"name": "Record Harvest Batch",
+	"nodes": [
+		{
+			"id": "7c805b27-ccc8-4b3d-9921-bff6fe472c96",
+			"name": "Harvest scan",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "harvest/batch",
+				"options": {}
+			},
+			"webhookId": "0064260b-88c2-4781-8eb9-e968af70fce2"
+		},
+		{
+			"id": "c56121f6-0b25-493a-9562-8b41ef7baca6",
+			"name": "Store batch",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"batch_code": "={{ $json.body.batch_code }}",
+						"crop": "={{ $json.body.crop }}",
+						"zone": "={{ $json.body.zone }}",
+						"weight_kg": "={{ $json.body.weight_kg }}",
+						"harvested_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "a81izAGygzhHhb9B",
+					"mode": "list",
+					"cachedResultName": "harvest_batches"
+				}
+			}
+		},
+		{
+			"id": "5570dcfd-af80-4b66-a1e1-702cb36d7eec",
+			"name": "Print labels",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"source": "database",
+				"options": {},
+				"workflowId": {
+					"__rl": true,
+					"value": "lE1bL3DYDb4WeNeY",
+					"mode": "list",
+					"cachedResultName": "Print Batch Labels"
+				}
+			}
+		},
+		{
+			"id": "43fb02a4-51f9-4761-bc32-273e4b22a6b5",
+			"name": "Announce batch",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "packhouse",
+					"mode": "name"
+				},
+				"text": "=Batch {{ $json.batch_code }} harvested: {{ $json.weight_kg }} kg.",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "FTzVMwpxRknepIBX"
+				}
+			},
+			"webhookId": "d1dfddfd-1be8-427c-835d-632213270d0e"
+		}
+	],
+	"connections": {
+		"Harvest scan": {
+			"main": [
+				[
+					{
+						"node": "Store batch",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Store batch": {
+			"main": [
+				[
+					{
+						"node": "Print labels",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Print labels": {
+			"main": [
+				[
+					{
+						"node": "Announce batch",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"IAQi4EQaDUrwMBqW"
+	]
+}

@@ -1,0 +1,141 @@
+{
+	"id": "35zm8CC7QVFcEJ73",
+	"name": "Monthly Sustainability Report",
+	"nodes": [
+		{
+			"id": "591de165-bd83-4ee0-9164-47dafc9725a6",
+			"name": "First of month 08:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 8 1 * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "4ed3e85d-9c3e-43fa-ae39-5d7b530c8379",
+			"name": "Water usage",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "liters",
+							"condition": "gt",
+							"keyValue": 0
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "VIllSZhix1rXubxe",
+					"mode": "list",
+					"cachedResultName": "water_usage"
+				}
+			}
+		},
+		{
+			"id": "118ec1a9-01c3-4d6a-967f-86197fce1a90",
+			"name": "Total and cost",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"jsCode": "const l = $input.all().reduce((s, i) => s + i.json.liters, 0);\nreturn [{ json: { liters: l, cost_eur: +(l / 1000 * 3.1).toFixed(2) } }];"
+			}
+		},
+		{
+			"id": "8e08c0aa-d0f9-4951-bd6d-8103845652a0",
+			"name": "Post report",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "farm-daily",
+					"mode": "name"
+				},
+				"text": "=Water: {{ $json.liters }} L (≈ {{ $json.cost_eur }} EUR)",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "wE0UIRLPtpdYcIL1"
+				}
+			},
+			"webhookId": "6e86c1b6-ab73-447c-818f-e65fbed6b276"
+		}
+	],
+	"connections": {
+		"First of month 08:00": {
+			"main": [
+				[
+					{
+						"node": "Water usage",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Water usage": {
+			"main": [
+				[
+					{
+						"node": "Total and cost",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Total and cost": {
+			"main": [
+				[
+					{
+						"node": "Post report",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "zWDIbJy5FJfLRwGb",
+	"isArchived": false,
+	"tagIds": [
+		"pe0q5cVVTVsWqNT7",
+		"j1xFDF7e4TR0KrfZ"
+	]
+}

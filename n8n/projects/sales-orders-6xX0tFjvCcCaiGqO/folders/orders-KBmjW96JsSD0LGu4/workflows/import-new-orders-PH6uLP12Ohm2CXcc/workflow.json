@@ -1,0 +1,147 @@
+{
+	"id": "PH6uLP12Ohm2CXcc",
+	"name": "Import New Orders",
+	"nodes": [
+		{
+			"id": "d805530f-0503-4133-869f-fe7681ac74f1",
+			"name": "Every 10 minutes",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "*/10 * * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "7f03cba1-e2f3-4ac6-b1e3-5b93de957ae8",
+			"name": "Fetch portal orders",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"method": "GET",
+				"url": "https://portal.greenspire-farms.example/api/orders?status=new",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "yOx2Ik6WNazyve0S"
+				}
+			}
+		},
+		{
+			"id": "0973aee5-3637-48ce-93ce-5b76cc8a21e8",
+			"name": "Store order",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"order_no": "={{ $json.order_no }}",
+						"customer": "={{ $json.customer }}",
+						"crop": "={{ $json.crop }}",
+						"kg": "={{ $json.kg }}",
+						"status": "confirmed",
+						"placed_at": "={{ $json.placed_at }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "PckcVOXUlOOalstE",
+					"mode": "list",
+					"cachedResultName": "orders"
+				}
+			}
+		},
+		{
+			"id": "a17fb817-322e-4ef9-bac1-e1f14e64d325",
+			"name": "Confirm to customer",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.2,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"source": "database",
+				"options": {},
+				"workflowId": {
+					"__rl": true,
+					"value": "2uBm9vBa75Y9tStR",
+					"mode": "list",
+					"cachedResultName": "Send Order Confirmation"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Every 10 minutes": {
+			"main": [
+				[
+					{
+						"node": "Fetch portal orders",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Fetch portal orders": {
+			"main": [
+				[
+					{
+						"node": "Store order",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Store order": {
+			"main": [
+				[
+					{
+						"node": "Confirm to customer",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "KBmjW96JsSD0LGu4",
+	"isArchived": false,
+	"tagIds": [
+		"ll5QGUWEoRjrSDzd"
+	]
+}

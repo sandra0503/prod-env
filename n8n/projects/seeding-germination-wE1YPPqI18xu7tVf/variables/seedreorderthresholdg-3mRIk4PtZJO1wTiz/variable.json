@@ -1,0 +1,5 @@
+{
+	"name": "SEED_REORDER_THRESHOLD_G",
+	"type": "string",
+	"value": "500"
+}

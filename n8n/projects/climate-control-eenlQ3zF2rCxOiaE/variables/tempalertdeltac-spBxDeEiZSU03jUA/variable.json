@@ -1,0 +1,5 @@
+{
+	"name": "TEMP_ALERT_DELTA_C",
+	"type": "string",
+	"value": "2.5"
+}

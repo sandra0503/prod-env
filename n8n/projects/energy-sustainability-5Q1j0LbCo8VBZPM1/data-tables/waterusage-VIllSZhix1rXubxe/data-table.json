@@ -1,0 +1,24 @@
+{
+	"id": "VIllSZhix1rXubxe",
+	"name": "water_usage",
+	"columns": [
+		{
+			"id": "y0R38AqWx2BDV99M",
+			"name": "source",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "IbEiWYSaaaPVvrGb",
+			"name": "liters",
+			"type": "number",
+			"index": 1
+		},
+		{
+			"id": "LlNMs8xXjUlyIS8h",
+			"name": "recorded_on",
+			"type": "date",
+			"index": 2
+		}
+	]
+}

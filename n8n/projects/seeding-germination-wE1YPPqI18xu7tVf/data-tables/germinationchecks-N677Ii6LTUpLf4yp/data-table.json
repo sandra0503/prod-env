@@ -1,0 +1,30 @@
+{
+	"id": "N677Ii6LTUpLf4yp",
+	"name": "germination_checks",
+	"columns": [
+		{
+			"id": "302aeqWuwXM7VCa4",
+			"name": "batch_code",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "gJhKCbW92CFok7QU",
+			"name": "sown",
+			"type": "number",
+			"index": 1
+		},
+		{
+			"id": "WXCGrrbDjPq12F2w",
+			"name": "germinated",
+			"type": "number",
+			"index": 2
+		},
+		{
+			"id": "Mx56w02PE0PhGZ6k",
+			"name": "checked_at",
+			"type": "date",
+			"index": 3
+		}
+	]
+}

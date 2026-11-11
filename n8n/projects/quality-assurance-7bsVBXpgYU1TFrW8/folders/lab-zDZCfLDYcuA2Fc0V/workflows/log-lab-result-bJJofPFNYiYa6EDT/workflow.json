@@ -1,0 +1,153 @@
+{
+	"id": "bJJofPFNYiYa6EDT",
+	"name": "Log Lab Result",
+	"nodes": [
+		{
+			"id": "799253d9-bc5a-4b70-8719-0dfd5ebacd27",
+			"name": "Lab result",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "qa/result",
+				"options": {}
+			},
+			"webhookId": "d4fb81c7-84f5-4461-8140-58d6b9eab1ec"
+		},
+		{
+			"id": "aa741ccb-9927-49c6-a369-3f7d818e16ae",
+			"name": "Store result",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"batch_code": "={{ $json.body.batch_code }}",
+						"test": "={{ $json.body.test }}",
+						"result_cfu": "={{ $json.body.result_cfu }}",
+						"passed": "={{ $json.body.result_cfu <= Number($vars.MAX_AEROBIC_COUNT_CFU) }}",
+						"tested_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "BQFZpZmqfXK3MBMf",
+					"mode": "list",
+					"cachedResultName": "qa_samples"
+				}
+			}
+		},
+		{
+			"id": "0a6d17d4-04c1-4adb-9ece-2de0dabffb34",
+			"name": "Over limit?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "strict",
+						"version": 2
+					},
+					"conditions": [
+						{
+							"id": "ef432999-a809-4c17-80e3-005a0ba54d57",
+							"leftValue": "={{ $json.result_cfu }}",
+							"rightValue": "={{ Number($vars.MAX_AEROBIC_COUNT_CFU) }}",
+							"operator": {
+								"type": "number",
+								"operation": "gt"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "f62073ef-8319-4a1b-9d31-ee15390be0d5",
+			"name": "Escalate",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.2,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"source": "database",
+				"options": {},
+				"workflowId": {
+					"__rl": true,
+					"value": "zkrwWRYD4czEdLn0",
+					"mode": "list",
+					"cachedResultName": "Escalate Failed Sample"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Lab result": {
+			"main": [
+				[
+					{
+						"node": "Store result",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Store result": {
+			"main": [
+				[
+					{
+						"node": "Over limit?",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Over limit?": {
+			"main": [
+				[
+					{
+						"node": "Escalate",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "zDZCfLDYcuA2Fc0V",
+	"isArchived": false,
+	"tagIds": [
+		"ONC5OpwRwqXi6a7O"
+	]
+}

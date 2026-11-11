@@ -1,0 +1,189 @@
+{
+	"id": "45m9ODic7DI9ie52",
+	"name": "Create Maintenance Ticket",
+	"nodes": [
+		{
+			"id": "87b30aeb-3600-4285-aa93-1f23d88a894c",
+			"name": "Fault report",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "maintenance/fault",
+				"options": {}
+			},
+			"webhookId": "007785ec-bb28-4135-8e99-d17bbe314893"
+		},
+		{
+			"id": "1a91729c-f196-4187-b546-ecae21983494",
+			"name": "Store ticket",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "insert",
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"asset_tag": "={{ $json.body.asset_tag }}",
+						"summary": "={{ $json.body.summary }}",
+						"priority": "={{ $json.body.priority }}",
+						"status": "open",
+						"opened_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "7Zeg0dnQQKXOgyVw",
+					"mode": "list",
+					"cachedResultName": "maintenance_tickets"
+				}
+			}
+		},
+		{
+			"id": "7ea2af74-9436-4efd-b088-d26ef8ac04dd",
+			"name": "Mirror to CMMS",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"method": "POST",
+				"url": "https://cmms.greenspire-farms.example/api/tickets",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={{ JSON.stringify($json) }}",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "s8ec32VzTg2xYmo2"
+				}
+			}
+		},
+		{
+			"id": "ddbfee64-8c18-4e41-813b-e8f974fb136b",
+			"name": "High priority?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "strict",
+						"version": 2
+					},
+					"conditions": [
+						{
+							"id": "2e164c6f-2f75-4ae7-9731-0e28abebb14a",
+							"leftValue": "={{ $json.priority }}",
+							"rightValue": "high",
+							"operator": {
+								"type": "string",
+								"operation": "equals"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "565ebb39-3bc1-4ba7-8380-be8734dee254",
+			"name": "Page technician",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.2,
+			"position": [
+				960,
+				0
+			],
+			"parameters": {
+				"source": "database",
+				"options": {},
+				"workflowId": {
+					"__rl": true,
+					"value": "lRovk85bGqW6UDyv",
+					"mode": "list",
+					"cachedResultName": "Page On-call Technician"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Fault report": {
+			"main": [
+				[
+					{
+						"node": "Store ticket",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Store ticket": {
+			"main": [
+				[
+					{
+						"node": "Mirror to CMMS",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Mirror to CMMS": {
+			"main": [
+				[
+					{
+						"node": "High priority?",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"High priority?": {
+			"main": [
+				[
+					{
+						"node": "Page technician",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "uk9s39HAEkZ6BXF5",
+	"isArchived": false,
+	"tagIds": [
+		"txMRyD1Yi4hcIEvp"
+	]
+}

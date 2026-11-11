@@ -1,0 +1,67 @@
+{
+	"id": "KPnWLUiFKquz8tKZ",
+	"name": "Notify Nutrient Alert",
+	"nodes": [
+		{
+			"id": "d8bfa405-cb33-4e10-bb77-59992041cb3d",
+			"name": "When called by another workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inputSource": "passthrough"
+			}
+		},
+		{
+			"id": "c20a1137-0176-45e6-959f-d8d00ef39b69",
+			"name": "Post to Slack",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "farm-ops-alerts",
+					"mode": "name"
+				},
+				"text": "=:droplet: Tank {{ $json.tank }}: {{ $json.liters }} L left (minimum {{ $vars.RESERVOIR_MIN_LITERS }} L)",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "JISOjt4VuHx0MbaQ"
+				}
+			},
+			"webhookId": "3ae5994f-6790-4356-a62e-08e1decd9d94"
+		}
+	],
+	"connections": {
+		"When called by another workflow": {
+			"main": [
+				[
+					{
+						"node": "Post to Slack",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "m4LarHQga3Cjp7bp",
+	"isArchived": false,
+	"tagIds": [
+		"HrrAulEUm3UZ5mlN",
+		"HYi8b0fVqloz5clQ"
+	]
+}

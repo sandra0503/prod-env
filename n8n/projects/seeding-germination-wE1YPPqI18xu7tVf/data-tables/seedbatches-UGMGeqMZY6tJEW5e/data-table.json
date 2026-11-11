@@ -1,0 +1,36 @@
+{
+	"id": "UGMGeqMZY6tJEW5e",
+	"name": "seed_batches",
+	"columns": [
+		{
+			"id": "5nPbHXTxXxPUbdme",
+			"name": "batch_code",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "7l18uh6i72D0YQT0",
+			"name": "crop",
+			"type": "string",
+			"index": 1
+		},
+		{
+			"id": "rsWa0OdtDGtniVyy",
+			"name": "variety",
+			"type": "string",
+			"index": 2
+		},
+		{
+			"id": "zs9nlZhmRGrR6oiN",
+			"name": "seeds_remaining_g",
+			"type": "number",
+			"index": 3
+		},
+		{
+			"id": "jqLfLaxIKeFUfdpE",
+			"name": "received_on",
+			"type": "date",
+			"index": 4
+		}
+	]
+}

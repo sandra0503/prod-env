@@ -1,0 +1,5 @@
+{
+	"name": "QA_ESCALATION_EMAIL",
+	"type": "string",
+	"value": "quality-lead@greenspire-farms.example"
+}

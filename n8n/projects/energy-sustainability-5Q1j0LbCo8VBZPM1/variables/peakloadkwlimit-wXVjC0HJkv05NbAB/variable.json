@@ -1,0 +1,5 @@
+{
+	"name": "PEAK_LOAD_KW_LIMIT",
+	"type": "string",
+	"value": "180"
+}

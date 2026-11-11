@@ -1,0 +1,106 @@
+{
+	"id": "kJ8ptApjmv4C6lNb",
+	"name": "Equipment Downtime Report",
+	"nodes": [
+		{
+			"id": "738969fd-3b0d-45ef-abd6-fdd25d38cc3f",
+			"name": "First of month 07:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 7 1 * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "b9304977-8003-4ce9-92ef-e6e184b897c5",
+			"name": "Fetch downtime",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"method": "GET",
+				"url": "https://cmms.greenspire-farms.example/api/downtime?period=last_month",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "s8ec32VzTg2xYmo2"
+				}
+			}
+		},
+		{
+			"id": "aefa2ff3-b0c4-48d9-b38f-2445460f9458",
+			"name": "Post report",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "maintenance",
+					"mode": "name"
+				},
+				"text": "=Downtime last month: {{ $json.total_hours }} h across {{ $json.events }} events.",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "x8ACgUuzbcQDT1i5"
+				}
+			},
+			"webhookId": "9255ffeb-568d-4efb-afa1-60b30937d612"
+		}
+	],
+	"connections": {
+		"First of month 07:00": {
+			"main": [
+				[
+					{
+						"node": "Fetch downtime",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Fetch downtime": {
+			"main": [
+				[
+					{
+						"node": "Post report",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"pe0q5cVVTVsWqNT7"
+	]
+}

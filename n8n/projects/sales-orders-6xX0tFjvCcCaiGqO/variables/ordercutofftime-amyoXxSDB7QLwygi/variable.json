@@ -1,0 +1,5 @@
+{
+	"name": "ORDER_CUTOFF_TIME",
+	"type": "string",
+	"value": "14:00"
+}

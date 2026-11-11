@@ -1,0 +1,5 @@
+{
+	"name": "CO2_TARGET_PPM",
+	"type": "string",
+	"value": "900"
+}

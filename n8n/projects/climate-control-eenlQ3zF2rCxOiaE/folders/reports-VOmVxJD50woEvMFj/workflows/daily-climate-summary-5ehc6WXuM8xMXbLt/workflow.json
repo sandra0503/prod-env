@@ -1,0 +1,140 @@
+{
+	"id": "5ehc6WXuM8xMXbLt",
+	"name": "Daily Climate Summary",
+	"nodes": [
+		{
+			"id": "0d4810eb-d9a2-4dca-ac91-eae98240b119",
+			"name": "Every day 06:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 6 * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "e0e9b9ae-5d68-44fe-8db1-7deeda844985",
+			"name": "Get last 24 h",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "zone",
+							"condition": "neq",
+							"keyValue": ""
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "uJ93Do8loEQMEu8K",
+					"mode": "list",
+					"cachedResultName": "climate_readings"
+				}
+			}
+		},
+		{
+			"id": "75432f55-dc1e-4e53-af6a-bce40eb9f8d1",
+			"name": "Aggregate by zone",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"jsCode": "const byZone = {};\nfor (const { json } of $input.all()) {\n  const z = (byZone[json.zone] ??= { zone: json.zone, n: 0, temp: 0, rh: 0 });\n  z.n++; z.temp += json.temperature_c; z.rh += json.humidity_pct;\n}\nreturn Object.values(byZone).map((z) => ({ json: { zone: z.zone, avg_temp: +(z.temp / z.n).toFixed(1), avg_rh: +(z.rh / z.n).toFixed(0) } }));"
+			}
+		},
+		{
+			"id": "93c0b1c8-dc7a-419e-b987-496cc7045008",
+			"name": "Post summary",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "farm-daily",
+					"mode": "name"
+				},
+				"text": "=Zone {{ $json.zone }}: avg {{ $json.avg_temp }} °C, {{ $json.avg_rh }} % RH",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "XxNzjWl3SZPcUUY1"
+				}
+			},
+			"webhookId": "616e1005-eced-494d-a327-5226dc3e2c20"
+		}
+	],
+	"connections": {
+		"Every day 06:00": {
+			"main": [
+				[
+					{
+						"node": "Get last 24 h",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Get last 24 h": {
+			"main": [
+				[
+					{
+						"node": "Aggregate by zone",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Aggregate by zone": {
+			"main": [
+				[
+					{
+						"node": "Post summary",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "VOmVxJD50woEvMFj",
+	"isArchived": false,
+	"tagIds": [
+		"pe0q5cVVTVsWqNT7"
+	]
+}

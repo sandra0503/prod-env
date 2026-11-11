@@ -1,0 +1,149 @@
+{
+	"id": "CvDqnMgfPq5OT5mD",
+	"name": "Dim Lights On Dirty Grid",
+	"nodes": [
+		{
+			"id": "8947fa5a-6e38-4f79-831d-f90568af10b0",
+			"name": "Every 30 minutes",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "*/30 * * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "26ca587b-8190-4714-85c8-5a2443099f68",
+			"name": "Get grid carbon intensity",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"method": "GET",
+				"url": "https://grid.example/api/intensity/current",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "zDKvEC1fOt7sDeL4"
+				}
+			}
+		},
+		{
+			"id": "f536d220-0946-4ccd-8bf9-1c4524216988",
+			"name": "Carbon intensity high?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "strict",
+						"version": 2
+					},
+					"conditions": [
+						{
+							"id": "8c2e4a31-a8be-42fc-b6a7-76d28c6ff10a",
+							"leftValue": "={{ $json.gco2_per_kwh }}",
+							"rightValue": "={{ Number($vars.DIM_ABOVE_G_CO2_PER_KWH) }}",
+							"operator": {
+								"type": "number",
+								"operation": "gt"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "bc60f2d4-5ee4-4d10-aec9-f40815dd964a",
+			"name": "Dim LED arrays to 85 %",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"method": "POST",
+				"url": "https://gateway.greenspire-farms.example/v2/lighting/dim",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={{ JSON.stringify({ level: 85 }) }}",
+				"options": {},
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth"
+			},
+			"credentials": {
+				"httpHeaderAuth": {
+					"id": "7mlmh3kzBbsrojw5"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Every 30 minutes": {
+			"main": [
+				[
+					{
+						"node": "Get grid carbon intensity",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Get grid carbon intensity": {
+			"main": [
+				[
+					{
+						"node": "Carbon intensity high?",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Carbon intensity high?": {
+			"main": [
+				[
+					{
+						"node": "Dim LED arrays to 85 %",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"j1xFDF7e4TR0KrfZ"
+	]
+}

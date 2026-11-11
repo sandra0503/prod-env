@@ -1,0 +1,140 @@
+{
+	"id": "59muQkTaxmJpCy2e",
+	"name": "Germination Check Reminder",
+	"nodes": [
+		{
+			"id": "f7faac91-dd1e-4892-849e-a942209223a4",
+			"name": "Every day 08:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 8 * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "f9b717b2-3b75-41d1-abb6-e02bd55d3c66",
+			"name": "Open germination checks",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "get",
+				"matchType": "allConditions",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "sown",
+							"condition": "gt",
+							"keyValue": 0
+						}
+					]
+				},
+				"returnAll": true,
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "N677Ii6LTUpLf4yp",
+					"mode": "list",
+					"cachedResultName": "germination_checks"
+				}
+			}
+		},
+		{
+			"id": "08d24081-68fa-445a-b9d5-26e432100374",
+			"name": "Flag low rates",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"jsCode": "return $input.all()\n  .map((i) => ({ json: { ...i.json, rate: +(i.json.germinated / i.json.sown * 100).toFixed(1) } }))\n  .filter((i) => i.json.rate < Number($vars.MIN_GERMINATION_RATE_PCT));"
+			}
+		},
+		{
+			"id": "ac7f5762-94d8-459f-b6a8-78abefa53698",
+			"name": "Remind seeding team",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "seeding",
+					"mode": "name"
+				},
+				"text": "=Batch {{ $json.batch_code }} germinated at {{ $json.rate }} % (minimum {{ $vars.MIN_GERMINATION_RATE_PCT }} %).",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "plCbtE0EqP9cdpjL"
+				}
+			},
+			"webhookId": "65b447eb-6cd0-4cab-b37e-8cee28e9ec29"
+		}
+	],
+	"connections": {
+		"Every day 08:00": {
+			"main": [
+				[
+					{
+						"node": "Open germination checks",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Open germination checks": {
+			"main": [
+				[
+					{
+						"node": "Flag low rates",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Flag low rates": {
+			"main": [
+				[
+					{
+						"node": "Remind seeding team",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": [
+		"pe0q5cVVTVsWqNT7"
+	]
+}

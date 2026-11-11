@@ -1,0 +1,104 @@
+{
+	"id": "gJGdlWeGYygatYxF",
+	"name": "Weekly Sales Summary",
+	"nodes": [
+		{
+			"id": "897230cd-3a4e-4073-970b-a967faabaa90",
+			"name": "Mondays 08:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "0 8 * * 1"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "edbdf270-8891-4b8d-99ed-26f4993688ea",
+			"name": "Revenue by segment",
+			"type": "n8n-nodes-base.postgres",
+			"typeVersion": 2.5,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"operation": "executeQuery",
+				"query": "SELECT segment, SUM(kg) AS kg FROM orders WHERE placed_at > now() - interval '7 days' GROUP BY segment;",
+				"options": {}
+			},
+			"credentials": {
+				"postgres": {
+					"id": "dpz3EvScMglND0i1"
+				}
+			}
+		},
+		{
+			"id": "aaeb60e1-1cee-42f2-803e-856a8c39b66b",
+			"name": "Post to Slack",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.3,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"select": "channel",
+				"channelId": {
+					"__rl": true,
+					"value": "sales",
+					"mode": "name"
+				},
+				"text": "={{ $json.segment }}: {{ $json.kg }} kg",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "JNiEp18ou394Ter9"
+				}
+			},
+			"webhookId": "fcc46912-44b4-4850-881c-47009a4b36e1"
+		}
+	],
+	"connections": {
+		"Mondays 08:00": {
+			"main": [
+				[
+					{
+						"node": "Revenue by segment",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Revenue by segment": {
+			"main": [
+				[
+					{
+						"node": "Post to Slack",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "2ts1mifQifF0E3c2",
+	"isArchived": false,
+	"tagIds": [
+		"pe0q5cVVTVsWqNT7"
+	]
+}

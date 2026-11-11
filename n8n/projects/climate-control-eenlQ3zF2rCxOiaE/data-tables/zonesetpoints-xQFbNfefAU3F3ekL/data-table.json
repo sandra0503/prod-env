@@ -1,0 +1,30 @@
+{
+	"id": "xQFbNfefAU3F3ekL",
+	"name": "zone_setpoints",
+	"columns": [
+		{
+			"id": "wfuFnbxYrp207ecY",
+			"name": "zone",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "lb0gDLaFprJMti7U",
+			"name": "temperature_c",
+			"type": "number",
+			"index": 1
+		},
+		{
+			"id": "vO9TvUfiKXsVRO7j",
+			"name": "humidity_pct",
+			"type": "number",
+			"index": 2
+		},
+		{
+			"id": "KQl5l48CexBHgbA8",
+			"name": "updated_by",
+			"type": "string",
+			"index": 3
+		}
+	]
+}

@@ -1,0 +1,30 @@
+{
+	"id": "xzWoXfwlaFvs1ZUy",
+	"name": "energy_readings",
+	"columns": [
+		{
+			"id": "WHe8H3FHTWf3r6bJ",
+			"name": "meter",
+			"type": "string",
+			"index": 0
+		},
+		{
+			"id": "cXHKLpIFQuv8PGnN",
+			"name": "kwh",
+			"type": "number",
+			"index": 1
+		},
+		{
+			"id": "ZjBqtHjSRp8Bp6W9",
+			"name": "peak_kw",
+			"type": "number",
+			"index": 2
+		},
+		{
+			"id": "6lltDf2C9wiCbPTP",
+			"name": "recorded_at",
+			"type": "date",
+			"index": 3
+		}
+	]
+}

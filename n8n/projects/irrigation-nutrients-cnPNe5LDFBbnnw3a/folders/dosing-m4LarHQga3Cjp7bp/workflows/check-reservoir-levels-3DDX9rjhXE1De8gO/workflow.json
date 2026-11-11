@@ -1,0 +1,195 @@
+{
+	"id": "3DDX9rjhXE1De8gO",
+	"name": "Check Reservoir Levels",
+	"nodes": [
+		{
+			"id": "c0939963-c55a-4247-b3c7-bd58f6dcf6e6",
+			"name": "Every 15 minutes",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "cronExpression",
+							"expression": "*/15 * * * *"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "ba27a9bc-3e83-4798-a656-f1e0210c00c2",
+			"name": "Latest tank levels",
+			"type": "n8n-nodes-base.postgres",
+			"typeVersion": 2.5,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"operation": "executeQuery",
+				"query": "SELECT tank, liters FROM reservoir_state ORDER BY measured_at DESC LIMIT 3;",
+				"options": {}
+			},
+			"credentials": {
+				"postgres": {
+					"id": "LsejpyTmVGnoFYcs"
+				}
+			}
+		},
+		{
+			"id": "f73797e7-db2c-4984-9ab9-d2ca0b499b68",
+			"name": "Update level log",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"resource": "row",
+				"operation": "upsert",
+				"filters": {
+					"conditions": [
+						{
+							"keyName": "tank",
+							"condition": "eq",
+							"keyValue": "={{ $json.tank }}"
+						}
+					]
+				},
+				"columns": {
+					"mappingMode": "defineBelow",
+					"value": {
+						"tank": "={{ $json.tank }}",
+						"liters": "={{ $json.liters }}",
+						"checked_at": "={{ $now.toISO() }}"
+					},
+					"matchingColumns": [],
+					"schema": [],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": false
+				},
+				"options": {},
+				"dataTableId": {
+					"__rl": true,
+					"value": "bnhpwp3S15QQnH8z",
+					"mode": "list",
+					"cachedResultName": "reservoir_levels"
+				}
+			}
+		},
+		{
+			"id": "b93959e3-a6a9-4e48-85fa-16cda195563a",
+			"name": "Below minimum?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [
+				720,
+				0
+			],
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "strict",
+						"version": 2
+					},
+					"conditions": [
+						{
+							"id": "af5eaaf5-308a-45c6-b7c4-b903481ce9c0",
+							"leftValue": "={{ $json.liters }}",
+							"rightValue": "={{ Number($vars.RESERVOIR_MIN_LITERS) }}",
+							"operator": {
+								"type": "number",
+								"operation": "lt"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "a5ce972e-3ad0-492f-861b-d318bfc05e44",
+			"name": "Alert team",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.2,
+			"position": [
+				960,
+				0
+			],
+			"parameters": {
+				"source": "database",
+				"options": {},
+				"workflowId": {
+					"__rl": true,
+					"value": "KPnWLUiFKquz8tKZ",
+					"mode": "list",
+					"cachedResultName": "Notify Nutrient Alert"
+				}
+			}
+		}
+	],
+	"connections": {
+		"Every 15 minutes": {
+			"main": [
+				[
+					{
+						"node": "Latest tank levels",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Latest tank levels": {
+			"main": [
+				[
+					{
+						"node": "Update level log",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Update level log": {
+			"main": [
+				[
+					{
+						"node": "Below minimum?",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Below minimum?": {
+			"main": [
+				[
+					{
+						"node": "Alert team",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"parentFolderId": "m4LarHQga3Cjp7bp",
+	"isArchived": false,
+	"tagIds": [
+		"6lKtuzOrSQpwsIId"
+	]
+}
